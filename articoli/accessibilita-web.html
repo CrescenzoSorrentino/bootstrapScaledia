@@ -44,8 +44,6 @@
 		  rel="stylesheet"
 		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 		  crossorigin="anonymous"/>
-	<!-- Typography overrides -->
-	<link rel="stylesheet" href="../css/typography.css"/>
 
 	<style>
         .object-fit-cover {
@@ -57,11 +55,11 @@
             top: 1rem
         }
 
-        .prose code {
-            background: #f8f9fa;
-            padding: .15rem .35rem;
-            border-radius: .25rem
-        }
+      		code {
+			background: #f8f9fa;
+			padding: .15rem .35rem;
+			border-radius: .25rem
+		}
 
         pre code {
             display: block;
@@ -294,7 +292,7 @@
 	<div class="container">
 		<div class="row g-5">
 			<!-- Contenuto -->
-			<article class="col-lg-8 prose">
+			<article class="col-lg-8 lh-lg fs-5">
 				<p class="lead">
 					L’<strong>accessibilità web</strong> (<em>a11y</em>) rende siti e applicazioni <em>utilizzabili da
 					tutti</em>. Si fonda su HTML semantico, buona progettazione, WAI‑ARIA dove serve e test reali.
@@ -460,12 +458,11 @@
 
 <!-- Footer -->
 <footer class="py-4 border-top">
-	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between">
-		<small class="text-muted">© <span id="year"></span> Scaledia</small>
+	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
+		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
 		<nav aria-label="Link social">
-			<a class="text-muted me-3" href="#">Twitter/X</a>
-			<a class="text-muted me-3" href="#">GitHub</a>
-			<a class="text-muted" href="#">LinkedIn</a>
+			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
 		</nav>
 	</div>
 </footer>

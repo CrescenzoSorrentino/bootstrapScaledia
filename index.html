@@ -49,8 +49,6 @@
 			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 			crossorigin="anonymous"
 	/>
-	<!-- Typography overrides -->
-	<link rel="stylesheet" href="/css/typography.css"/>
 
 	<!-- Preload immagine hero -->
 	<link rel="preload" as="image" href="assets/img/hero/hero-office-1920.avif"
@@ -152,7 +150,7 @@
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container">
-		<a class="navbar-brand fw-semibold" href="#">Scaledia.net</a>
+		<a class="navbar-brand fw-semibold" href="index.html">Scaledia.net</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
 				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
 			<span class="navbar-toggler-icon"></span>
@@ -171,7 +169,7 @@
 						<li><a class="dropdown-item" href="articoli.html?categoria=css">CSS</a></li>
 						<li><a class="dropdown-item" href="articoli.html?categoria=javascript">JavaScript</a></li>
 						<li><a class="dropdown-item" href="articoli.html?categoria=performance">Performance</a></li>
-						<li><a class="dropdown-item" href="articoli.html?categoria=accessibilita">Accesibilità</a></li>
+						<li><a class="dropdown-item" href="articoli.html?categoria=accessibilita">Accessibilità</a></li>
 						<li>
 							<hr class="dropdown-divider">
 						</li>
@@ -184,7 +182,7 @@
 </nav>
 
 <!-- HERO SPLIT (blog) -->
-<section class="hero-split py-5 py-lg-6" aria-labelledby="hero-title">
+<section class="hero-split py-5 py-lg-5" aria-labelledby="hero-title">
 	<div class="container">
 		<div class="row align-items-center g-4 g-lg-5">
 			<div class="col-lg-6">
@@ -254,7 +252,7 @@
 					<p class="lead text-muted mb-4">Impara le best practice di accessibilità per creare siti usabili da
 						tutti: alternative testuali, contrasto, navigazione da tastiera e molto altro.</p>
 					<div class="d-flex flex-wrap gap-3 align-items-center text-muted small">
-						<span>Categoria: <a href="/categoria/accessibilita">Accessibilità</a></span>
+						<span>Categoria: <a href="articoli.html?categoria=accessibilita">Accessibilità</a></span>
 						<span>•</span>
 						<span><time datetime="2025-08-12">12 Agosto 2025</time></span>
 						<span>•</span>
@@ -275,7 +273,7 @@
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/html-semantico" class="ratio ratio-16x9">
+ 					<a href="/articoli/html-semantico.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
 								 src="assets/img/cover/html-semantico-640.jpg"
 								 srcset="assets/img/cover/html-semantico-640.jpg 640w, assets/img/cover/html-semantico-1280.jpg 1280w"
@@ -285,12 +283,12 @@
 						</a>
 						<div class="card-body d-flex flex-column">
 							<div class="mb-2">
-								<a href="/categoria/html"
+								<a href="articoli.html?categoria=html"
 								   class="badge rounded-pill text-bg-light text-secondary">HTML</a>
 							</div>
 							<h3 class="h5">
 								<a class="stretched-link text-decoration-none link-dark"
-								   href="/articoli/html-semantico.html/">
+								   href="/articoli/html-semantico.html">
 									HTML semantico: guida pratica a header, main, article e aside
 								</a>
 							</h3>
@@ -307,7 +305,7 @@
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/slug-flexbox-grid/" class="ratio ratio-16x9">
+ 					<a href="/articoli/flexbox-vs-grid.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
 								 src="assets/img/cover/flex-grid-640.jpg"
 								 srcset="assets/img/cover/flex-grid-640.jpg 640w, assets/img/cover/flex-grid-1280.jpg 1280w"
@@ -317,7 +315,7 @@
 						</a>
 						<div class="card-body d-flex flex-column">
 							<div class="mb-2">
-								<a href="/categoria/css/"
+								<a href="articoli.html?categoria=css"
 								   class="badge rounded-pill text-bg-light text-secondary">CSS</a>
 							</div>
 							<h3 class="h5">
@@ -339,7 +337,7 @@
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/slug-js-performance/" class="ratio ratio-16x9">
+ 					<a href="/articoli/js-performance.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
 								 src="assets/img/cover/js-perf-640.jpg"
 								 srcset="assets/img/cover/js-perf-640.jpg 640w, assets/img/cover/js-perf-1280.jpg 1280w"
@@ -349,7 +347,7 @@
 						</a>
 						<div class="card-body d-flex flex-column">
 							<div class="mb-2">
-								<a href="/categoria/javascript/"
+								<a href="articoli.html?categoria=javascript"
 								   class="badge rounded-pill text-bg-light text-secondary">JavaScript</a>
 							</div>
 							<h3 class="h5">
@@ -418,11 +416,10 @@
 <!-- FOOTER (mini) -->
 <footer class="py-4 border-top">
 	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-		<small class="text-muted">© <span id="year"></span> Scaledia</small>
+		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
 		<nav aria-label="Link social">
-			<a class="text-muted me-3" href="https://twitter.com/TUO_HANDLE">Twitter/X</a>
-			<a class="text-muted me-3" href="https://github.com/TUO_GITHUB">GitHub</a>
-			<a class="text-muted" href="https://www.linkedin.com/company/TUA-PAGINA">LinkedIn</a>
+			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
 		</nav>
 	</div>
 </footer>
