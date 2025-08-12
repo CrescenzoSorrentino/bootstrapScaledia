@@ -66,7 +66,7 @@
             padding: 1rem;
             border-radius: .5rem;
             background: #0b0b0b;
-            color: #f8f9fa;
+            color: #f8f9fa !important;
             overflow: auto
         }
 
@@ -314,7 +314,7 @@
 				<h2 id="wai-aria">WAI‑ARIA: quando e come</h2>
 				<p>ARÌA <em>integra</em> l’HTML, non lo sostituisce. Aggiungi ruoli/stati solo per componenti custom
 					(es. accordion, tab). Esempio minimale:</p>
-				<pre><code style="color: #000">&lt;button aria-expanded="false" aria-controls="faq-1"&gt;Apri FAQ&lt;/button&gt;
+				<pre><code>&lt;button aria-expanded="false" aria-controls="faq-1"&gt;Apri FAQ&lt;/button&gt;
 &lt;div id="faq-1" role="region" aria-labelledby="faq-1-title" hidden&gt;
   &lt;h3 id="faq-1-title"&gt;Domanda&lt;/h3&gt;
   &lt;p&gt;Risposta...&lt;/p&gt;
