@@ -1,0 +1,178 @@
+<main id="articoli" class="py-5">
+  <div class="container">
+
+    <!-- 1) ARTICOLO IN EVIDENZA -->
+    <section aria-labelledby="featured-title" class="mb-5">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <picture>
+            <source srcset="assets/img/cover/featured-1920.avif 1920w, assets/img/cover/featured-1280.avif 1280w" type="image/avif" sizes="(min-width:992px) 50vw, 100vw">
+            <source srcset="assets/img/cover/featured-1920.webp 1920w, assets/img/cover/featured-1280.webp 1280w" type="image/webp" sizes="(min-width:992px) 50vw, 100vw">
+            <img class="img-fluid rounded shadow-sm"
+                 src="assets/img/cover/featured-1280.jpg"
+                 srcset="assets/img/cover/featured-1280.jpg 1280w, assets/img/cover/featured-1920.jpg 1920w"
+                 sizes="(min-width:992px) 50vw, 100vw"
+                 alt="Anteprima articolo in evidenza: [titolo descrittivo]"
+                 loading="lazy" decoding="async">
+          </picture>
+        </div>
+        <div class="col-lg-6">
+          <span class="badge text-bg-primary mb-2">In evidenza</span>
+          <h2 id="featured-title" class="h1 mb-3">
+            <a class="link-dark text-decoration-none" href="/articoli/slug-articolo-in-evidenza/">
+              [Titolo dell’articolo in evidenza con parola chiave]
+            </a>
+          </h2>
+          <p class="lead text-muted mb-4">[Sommario breve (1–2 frasi) con keyword principali e beneficio per il lettore.]</p>
+          <div class="d-flex flex-wrap gap-3 align-items-center text-muted small">
+            <span>Categoria: <a href="/categoria/[categoria]/">[Categoria]</a></span>
+            <span>•</span>
+            <span><time datetime="2025-08-01">1 agosto 2025</time></span>
+            <span>•</span>
+            <span>~6 min lettura</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) ULTIMI ARTICOLI -->
+    <section aria-labelledby="latest-title" class="mb-5">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h2 id="latest-title" class="h2 mb-0">Ultimi articoli</h2>
+        <a class="btn btn-sm btn-outline-secondary" href="/#articoli">Vedi tutti</a>
+      </div>
+
+      <div class="row g-4">
+        <!-- Card articolo -->
+        <article class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm">
+            <a href="/articoli/slug-html-semantico/" class="ratio ratio-16x9">
+              <img class="object-fit-cover rounded-top"
+                   src="assets/img/cover/html-semantico-640.jpg"
+                   srcset="assets/img/cover/html-semantico-640.jpg 640w, assets/img/cover/html-semantico-1280.jpg 1280w"
+                   sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
+                   alt="HTML semantico: struttura corretta di una pagina"
+                   loading="lazy" decoding="async">
+            </a>
+            <div class="card-body d-flex flex-column">
+              <div class="mb-2">
+                <a href="/categoria/html/" class="badge rounded-pill text-bg-light text-secondary">HTML</a>
+              </div>
+              <h3 class="h5">
+                <a class="stretched-link text-decoration-none link-dark" href="/articoli/slug-html-semantico/">
+                  HTML semantico: guida pratica a header, main, article e aside
+                </a>
+              </h3>
+              <p class="text-muted mb-3">Come usare i tag semantici per migliorare accessibilità, SEO e manutenzione del codice.</p>
+              <div class="mt-auto text-muted small d-flex gap-2 align-items-center">
+                <time datetime="2025-07-20">20 lug 2025</time> · ~5 min
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card articolo -->
+        <article class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm">
+            <a href="/articoli/slug-flexbox-grid/" class="ratio ratio-16x9">
+              <img class="object-fit-cover rounded-top"
+                   src="assets/img/cover/flex-grid-640.jpg"
+                   srcset="assets/img/cover/flex-grid-640.jpg 640w, assets/img/cover/flex-grid-1280.jpg 1280w"
+                   sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
+                   alt="Layout moderni con Flexbox e CSS Grid"
+                   loading="lazy" decoding="async">
+            </a>
+            <div class="card-body d-flex flex-column">
+              <div class="mb-2">
+                <a href="/categoria/css/" class="badge rounded-pill text-bg-light text-secondary">CSS</a>
+              </div>
+              <h3 class="h5">
+                <a class="stretched-link text-decoration-none link-dark" href="/articoli/slug-flexbox-grid/">
+                  Flexbox vs CSS Grid: quando usare l’uno, quando l’altro
+                </a>
+              </h3>
+              <p class="text-muted mb-3">Pattern comuni, esempi riutilizzabili e trucchi per layout responsive puliti.</p>
+              <div class="mt-auto text-muted small d-flex gap-2 align-items-center">
+                <time datetime="2025-07-10">10 lug 2025</time> · ~7 min
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card articolo -->
+        <article class="col-md-6 col-lg-4">
+          <div class="card h-100 shadow-sm">
+            <a href="/articoli/slug-js-performance/" class="ratio ratio-16x9">
+              <img class="object-fit-cover rounded-top"
+                   src="assets/img/cover/js-perf-640.jpg"
+                   srcset="assets/img/cover/js-perf-640.jpg 640w, assets/img/cover/js-perf-1280.jpg 1280w"
+                   sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
+                   alt="Performance JavaScript: best practice e ottimizzazioni"
+                   loading="lazy" decoding="async">
+            </a>
+            <div class="card-body d-flex flex-column">
+              <div class="mb-2">
+                <a href="/categoria/javascript/" class="badge rounded-pill text-bg-light text-secondary">JavaScript</a>
+              </div>
+              <h3 class="h5">
+                <a class="stretched-link text-decoration-none link-dark" href="/articoli/slug-js-performance/">
+                  Performance JavaScript: strategie per siti più veloci
+                </a>
+              </h3>
+              <p class="text-muted mb-3">Split del codice, lazy‑loading, debounce/throttle e metriche da monitorare.</p>
+              <div class="mt-auto text-muted small d-flex gap-2 align-items-center">
+                <time datetime="2025-06-28">28 giu 2025</time> · ~8 min
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3) CATEGORIE / TAG PRINCIPALI -->
+    <aside aria-labelledby="cat-title" class="mb-5">
+      <h2 id="cat-title" class="h3 mb-3">Categorie principali</h2>
+      <ul class="list-inline m-0">
+        <li class="list-inline-item mb-2"><a class="btn btn-sm btn-outline-secondary" href="/categoria/html/">HTML</a></li>
+        <li class="list-inline-item mb-2"><a class="btn btn-sm btn-outline-secondary" href="/categoria/css/">CSS</a></li>
+        <li class="list-inline-item mb-2"><a class="btn btn-sm btn-outline-secondary" href="/categoria/javascript/">JavaScript</a></li>
+        <li class="list-inline-item mb-2"><a class="btn btn-sm btn-outline-secondary" href="/categoria/performance/">Performance</a></li>
+        <li class="list-inline-item mb-2"><a class="btn btn-sm btn-outline-secondary" href="/categoria/accessibilita/">Accessibilità</a></li>
+      </ul>
+    </aside>
+
+    <!-- 4) NEWSLETTER -->
+    <section id="newsletter" aria-labelledby="news-title" class="mb-5">
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-7">
+          <h2 id="news-title" class="h3 mb-2">Newsletter di sviluppo web</h2>
+          <p class="text-muted mb-0">Una volta a settimana: guide HTML, CSS, JavaScript, best practice e risorse utili. Niente spam.</p>
+        </div>
+        <div class="col-lg-5">
+          <!-- Sostituisci action con il tuo endpoint -->
+          <form class="row g-2 justify-content-lg-end" method="post" action="/api/newsletter/subscribe">
+            <div class="col-sm-8">
+              <label for="newsletter-email" class="visually-hidden">Email</label>
+              <input id="newsletter-email" name="email" type="email" class="form-control" placeholder="la tua email" required>
+            </div>
+            <div class="col-sm-4 d-grid">
+              <button class="btn btn-primary" type="submit">Iscriviti</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) PAGINAZIONE -->
+    <nav class="d-flex justify-content-center" aria-label="Paginazione articoli">
+      <ul class="pagination">
+        <li class="page-item disabled"><span class="page-link">Prec</span></li>
+        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+        <li class="page-item"><a class="page-link" href="/pagina/2/">2</a></li>
+        <li class="page-item"><a class="page-link" href="/pagina/3/">3</a></li>
+        <li class="page-item"><a class="page-link" href="/pagina/2/">Succ</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</main>

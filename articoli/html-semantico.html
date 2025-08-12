@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>HTML semantico: guida pratica – Scaledia</title>
+	<meta name="description"
+		  content="Guida pratica all’HTML semantico: cos’è, perché è importante per SEO e accessibilità, tag principali (header, main, nav, article, section, aside, footer), esempi e best practice. Include HowTo e FAQ."/>
+	<link rel="canonical" href="https://scaledia.net/articoli/html-semantico.html"/>
+	<link rel="alternate" hreflang="it" href="https://scaledia.net/articoli/html-semantico.html"/>
+
+	<meta name="robots" content="index,follow,max-image-preview:large"/>
+	<meta name="referrer" content="no-referrer-when-downgrade"/>
+	<meta name="theme-color" content="#0d6efd"/>
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="HTML semantico: guida pratica – Scaledia"/>
+	<meta property="og:description"
+		  content="Tag semantici, struttura corretta, esempi, HowTo e FAQ per SEO e accessibilità."/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="https://scaledia.net/articoli/html-semantico.html"/>
+	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
+	<meta property="og:site_name" content="Scaledia"/>
+	<meta property="og:locale" content="it_IT"/>
+	<meta property="article:section" content="HTML"/>
+	<meta property="article:published_time" content="2025-07-20T09:00:00+02:00"/>
+	<meta property="article:modified_time" content="2025-08-12T09:00:00+02:00"/>
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:title" content="HTML semantico: guida pratica – Scaledia"/>
+	<meta name="twitter:description"
+		  content="Struttura semantica, esempi, HowTo e FAQ per pagine web accessibili e SEO-friendly."/>
+	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
+	<meta name="twitter:site" content="@TUO_HANDLE"/>
+
+	<!-- Favicon -->
+	<link rel="icon" href="/assets/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		  crossorigin="anonymous"/>
+
+	<style>
+        .object-fit-cover {
+            object-fit: cover
+        }
+
+        .toc {
+            position: sticky;
+            top: 1rem
+        }
+
+        .prose code {
+            background: #f8f9fa;
+            padding: .15rem .35rem;
+            border-radius: .25rem
+        }
+
+        pre code {
+            display: block;
+            padding: 1rem;
+            border-radius: .5rem;
+            background: #0b0b0b;
+            color: #f8f9fa;
+            overflow: auto
+        }
+
+        .lead-badge {
+            font-size: .85rem
+        }
+	</style>
+
+	<!-- JSON-LD: Breadcrumb + BlogPosting + FAQ + HowTo -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "BreadcrumbList",
+					"itemListElement": [
+						{
+							"@type": "ListItem",
+							"position": 1,
+							"name": "Home",
+							"item": "https://scaledia.net/"
+						},
+						{
+							"@type": "ListItem",
+							"position": 2,
+							"name": "Articoli",
+							"item": "https://scaledia.net/articoli.html"
+						},
+						{
+							"@type": "ListItem",
+							"position": 3,
+							"name": "HTML semantico: guida pratica",
+							"item": "https://scaledia.net/articoli/html-semantico.html"
+						}
+					]
+				},
+				{
+					"@type": "BlogPosting",
+					"@id": "https://scaledia.net/articoli/html-semantico.html#post",
+					"headline": "HTML semantico: guida pratica",
+					"description": "Guida pratica all’HTML semantico con tag, esempi, HowTo e best practice per SEO e accessibilità.",
+					"image": "https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg",
+					"datePublished": "2025-07-20T09:00:00+02:00",
+					"dateModified": "2025-08-12T09:00:00+02:00",
+					"author": {
+						"@type": "Person",
+						"name": "Scaledia"
+					},
+					"publisher": {
+						"@type": "Organization",
+						"name": "Scaledia",
+						"logo": {
+							"@type": "ImageObject",
+							"url": "https://scaledia.net/assets/img/logo.png",
+							"width": 512,
+							"height": 512
+						}
+					},
+					"mainEntityOfPage": {
+						"@type": "WebPage",
+						"@id": "https://scaledia.net/articoli/html-semantico.html"
+					},
+					"inLanguage": "it-IT",
+					"keywords": [
+						"HTML semantico",
+						"tag semantici",
+						"accessibilità",
+						"SEO",
+						"struttura pagina",
+						"header",
+						"main",
+						"article",
+						"section",
+						"aside",
+						"nav",
+						"footer"
+					]
+				},
+				{
+					"@type": "FAQPage",
+					"@id": "https://scaledia.net/articoli/html-semantico.html#faq",
+					"mainEntity": [
+						{
+							"@type": "Question",
+							"name": "Che cos’è l’HTML semantico?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "L’HTML semantico usa tag che descrivono il significato del contenuto (es. header, main, article, nav), migliorando accessibilità, SEO e manutenzione."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Perché è importante per la SEO?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Aiuta i motori a comprendere struttura e contesto, favorendo indicizzazione, snippet e navigazione dei crawler."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Quali tag usare?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "header, nav, main, article, section, aside, footer, figure/figcaption, time, address e heading h1–h6 in ordine gerarchico."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Quanti tag main posso usare?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Uno solo per pagina: rappresenta il contenuto principale esclusi header, nav e footer."
+							}
+						}
+					]
+				},
+				{
+					"@type": "HowTo",
+					"@id": "https://scaledia.net/articoli/html-semantico.html#howto",
+					"name": "Come progettare una pagina con HTML semantico",
+					"description": "Passi pratici per creare una struttura semantica corretta e accessibile.",
+					"totalTime": "PT10M",
+					"estimatedCost": {
+						"@type": "MonetaryAmount",
+						"currency": "EUR",
+						"value": "0"
+					},
+					"supply": [
+						{
+							"@type": "HowToSupply",
+							"name": "Editor di testo"
+						}
+					],
+					"tool": [
+						{
+							"@type": "HowToTool",
+							"name": "Browser"
+						}
+					],
+					"step": [
+						{
+							"@type": "HowToStep",
+							"name": "Definisci il contenuto principale",
+							"url": "https://scaledia.net/articoli/html-semantico.html#step-1",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Individua l’argomento principale e cosa deve contenere il main."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Imposta i landmark",
+							"url": "https://scaledia.net/articoli/html-semantico.html#step-2",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Aggiungi header, nav, main, aside (se serve) e footer."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Struttura con heading",
+							"url": "https://scaledia.net/articoli/html-semantico.html#step-3",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Usa un solo h1 e sottosezioni con h2/h3 in ordine logico."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Separa contenuti con article/section",
+							"url": "https://scaledia.net/articoli/html-semantico.html#step-4",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Usa article per blocchi autonomi e section per raggruppare temi con un titolo."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Aggiungi attributi utili",
+							"url": "https://scaledia.net/articoli/html-semantico.html#step-5",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Imposta alt per immagini, time con datetime ISO, aria-label dove necessario."
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	</script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+	<div class="container">
+		<a class="navbar-brand fw-semibold" href="../index.html">Scaledia.net</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="primaryNav">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="../articoli.html">Articoli</a></li>
+				<li class="nav-item"><a class="nav-link" href="../index.html#chi-siamo">Chi siamo</a></li>
+				<li class="nav-item"><a class="nav-link" href="../index.html#contatti">Contatti</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- BREADCRUMB + INTRO -->
+<header class="py-4 border-bottom">
+	<nav class="container" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-2">
+			<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+			<li class="breadcrumb-item"><a href="../articoli.html">Articoli</a></li>
+			<li class="breadcrumb-item active" aria-current="page">HTML semantico: guida pratica</li>
+		</ol>
+		<div class="d-flex align-items-center gap-3">
+			<h1 class="h2 mb-0">HTML semantico: guida pratica</h1>
+			<span class="badge text-bg-light lead-badge">HTML</span>
+		</div>
+		<p class="text-muted mb-0">Pubblicato il
+			<time datetime="2025-07-20">20 luglio 2025</time>
+			• Aggiornato il
+			<time datetime="2025-08-12">12 agosto 2025</time>
+			• ~5 min lettura
+		</p>
+	</nav>
+</header>
+
+<main class="py-5">
+	<div class="container">
+		<div class="row g-5">
+			<!-- Contenuto -->
+			<article class="col-lg-8 prose" itemscope itemtype="https://schema.org/Article">
+				<meta itemprop="headline" content="HTML semantico: guida pratica"/>
+				<meta itemprop="author" content="Scaledia"/>
+				<meta itemprop="datePublished" content="2025-07-20"/>
+				<meta itemprop="dateModified" content="2025-08-12"/>
+				<meta itemprop="image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
+
+				<p class="lead">
+					L’<strong>HTML semantico</strong> usa tag che descrivono il significato del contenuto. Risultato:
+					pagine più <em>accessibili</em>, <em>SEO‑friendly</em> e facili da mantenere.
+				</p>
+
+				<h2 id="cos-e-html-semantico">Cos’è l’HTML semantico?</h2>
+				<p>
+					Elementi come <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>,
+					<code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code> e <code>&lt;footer&gt;</code>
+					rappresentano la struttura logica della pagina, aiutando motori e tecnologie assistive.
+				</p>
+
+				<h2 id="perche-importante">Perché è importante (SEO + accessibilità)</h2>
+				<ul>
+					<li><strong>SEO:</strong> migliore comprensione del contenuto, snippet e crawlabilità.</li>
+					<li><strong>Accessibilità:</strong> landmark e ruoli impliciti migliorano la navigazione con screen
+						reader.
+					</li>
+					<li><strong>Manutenibilità:</strong> meno “div‑itis”, gerarchie chiare.</li>
+				</ul>
+
+				<h2 id="tag-principali">Tag principali e quando usarli</h2>
+				<ul>
+					<li><code>&lt;header&gt;</code> – intestazione della pagina o di una sezione.</li>
+					<li><code>&lt;nav&gt;</code> – blocchi di navigazione.</li>
+					<li><code>&lt;main&gt;</code> – contenuto principale (uno solo).</li>
+					<li><code>&lt;article&gt;</code> – unità autonome (post, card).</li>
+					<li><code>&lt;section&gt;</code> – raggruppa temi, con titolo.</li>
+					<li><code>&lt;aside&gt;</code> – contenuti complementari.</li>
+					<li><code>&lt;footer&gt;</code> – informazioni di chiusura.</li>
+					<li><code>&lt;figure&gt;</code>/<code>&lt;figcaption&gt;</code>, <code>&lt;time&gt;</code>, <code>&lt;address&gt;</code>.
+					</li>
+				</ul>
+
+				<h2 id="esempio-struttura">Esempio di struttura semantica</h2>
+				<pre><code>&lt;header&gt;
+  &lt;nav aria-label="Principale"&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="contenuto"&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Titolo articolo&lt;/h1&gt;
+      &lt;p&gt;&lt;time datetime="2025-07-20"&gt;20 lug 2025&lt;/time&gt;&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Sezione 1&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Sezione 2&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;footer&gt;Tag: HTML, Semantica&lt;/footer&gt;
+  &lt;/article&gt;
+
+  &lt;aside aria-label="Risorse correlate"&gt;...&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;Copyright&lt;/footer&gt;</code></pre>
+
+				<h2 id="best-practice">Best practice</h2>
+				<ul>
+					<li>Un solo <code>&lt;main&gt;</code> per pagina.</li>
+					<li>Heading in ordine (h1 → h2 → h3…).</li>
+					<li><code>&lt;section&gt;</code> sempre con un titolo.</li>
+					<li>Usa <code>alt</code> descrittivo per immagini (vuoto per decorative).</li>
+					<li><code>&lt;time datetime&gt;</code> in formato ISO.</li>
+				</ul>
+
+				<!-- HOWTO in pagina (coerente con JSON-LD) -->
+				<h2 id="howto" class="mt-5">Passi pratici: come progettare una pagina semantica</h2>
+
+				<h3 id="step-1">1) Definisci il contenuto principale</h3>
+				<p>Chiediti: qual è l’obiettivo della pagina? Cosa appartiene al <code>&lt;main&gt;</code> e cosa no?
+				</p>
+
+				<h3 id="step-2">2) Imposta i landmark</h3>
+				<p>Aggiungi <code>header</code>, <code>nav</code>, <code>main</code>, <code>aside</code> (se serve) e
+					<code>footer</code>. Usa <code>aria-label</code> se ce ne sono più di uno.</p>
+
+				<h3 id="step-3">3) Struttura con heading</h3>
+				<p>Un solo <code>h1</code>, poi <code>h2</code>/<code>h3</code> per le sezioni. Evita salti di livello.
+				</p>
+
+				<h3 id="step-4">4) Article e section</h3>
+				<p>Usa <code>article</code> per blocchi autonomi (post, card); <code>section</code> per gruppi tematici
+					con titolo.</p>
+
+				<h3 id="step-5">5) Attributi utili</h3>
+				<p><code>alt</code> per immagini, <code>time datetime</code> in ISO, link descrittivi, landmark
+					etichettati.</p>
+
+				<hr class="my-4"/>
+				<p class="mb-0">
+					Ti è stata utile questa guida? Leggi anche:
+					<a href="flexbox-vs-grid.html">Flexbox vs CSS Grid</a> e
+					<a href="js-performance.html">Performance JavaScript</a>.
+				</p>
+			</article>
+
+			<!-- Sidebar -->
+			<aside class="col-lg-4">
+				<div class="toc border rounded p-3 mb-4 bg-white">
+					<h2 class="h6">Sommario</h2>
+					<nav aria-label="Sommario dell'articolo">
+						<ol class="mb-0 small">
+							<li><a href="#cos-e-html-semantico">Cos'è l'HTML semantico?</a></li>
+							<li><a href="#perche-importante">Perché è importante</a></li>
+							<li><a href="#tag-principali">Tag principali</a></li>
+							<li><a href="#esempio-struttura">Esempio</a></li>
+							<li><a href="#best-practice">Best practice</a></li>
+							<li><a href="#howto">Passi pratici (HowTo)</a></li>
+						</ol>
+					</nav>
+				</div>
+
+				<div class="border rounded p-3">
+					<h2 class="h6 mb-2">Metadati</h2>
+					<ul class="m-0 small list-unstyled">
+						<li><strong>Categoria:</strong> <a href="../articoli.html?categoria=html">HTML</a></li>
+						<li><strong>Pubblicato:</strong>
+							<time datetime="2025-07-20">20 lug 2025</time>
+						</li>
+						<li><strong>Aggiornato:</strong>
+							<time datetime="2025-08-12">12 ago 2025</time>
+						</li>
+						<li><strong>Tempo lettura:</strong> ~5 min</li>
+					</ul>
+				</div>
+
+				<!-- Richiamo FAQ -->
+				<div class="border rounded p-3 mt-4">
+					<h2 class="h6 mb-2">FAQ rapide</h2>
+					<ul class="small m-0">
+						<li><a href="#faq">Che cos’è l’HTML semantico?</a></li>
+						<li><a href="#faq">Perché è importante per la SEO?</a></li>
+						<li><a href="#faq">Quali tag usare?</a></li>
+					</ul>
+				</div>
+			</aside>
+		</div>
+
+		<!-- FAQ in pagina (match con JSON-LD) -->
+		<section id="faq" class="pt-5">
+			<h2 class="h4 mb-3">Domande frequenti</h2>
+			<div class="accordion" id="faqAccordion">
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q1">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1"
+								aria-expanded="true" aria-controls="a1">
+							Che cos’è l’HTML semantico?
+						</button>
+					</h3>
+					<div id="a1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q1">
+						<div class="accordion-body">
+							L’HTML semantico usa tag descrittivi (es. <code>header</code>, <code>main</code>, <code>article</code>)
+							che comunicano significato e struttura a browser, motori di ricerca e tecnologie assistive.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q2">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a2" aria-expanded="false" aria-controls="a2">
+							Perché è importante per la SEO?
+						</button>
+					</h3>
+					<div id="a2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q2">
+						<div class="accordion-body">
+							Migliora la comprensione del contenuto, favorisce rich snippet e facilita la navigazione dei
+							crawler.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q3">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a3" aria-expanded="false" aria-controls="a3">
+							Quali tag dovrei usare?
+						</button>
+					</h3>
+					<div id="a3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q3">
+						<div class="accordion-body">
+							<code>header</code>, <code>nav</code>, <code>main</code>, <code>article</code>, <code>section</code>,
+							<code>aside</code>, <code>footer</code>, <code>figure</code>/<code>figcaption</code>, <code>time</code>
+							e heading gerarchici.
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</main>
+
+<!-- FOOTER -->
+<footer class="py-4 border-top">
+	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
+		<small class="text-muted">© <span id="year"></span> Scaledia</small>
+		<nav aria-label="Link social">
+			<a class="text-muted me-3" href="#">Twitter/X</a>
+			<a class="text-muted me-3" href="#">GitHub</a>
+			<a class="text-muted" href="#">LinkedIn</a>
+		</nav>
+	</div>
+</footer>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

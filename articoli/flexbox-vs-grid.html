@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+	<title>Flexbox vs CSS Grid: quando usare l’uno, quando l’altro – Scaledia</title>
+	<meta name="description"
+		  content="Confronto pratico tra Flexbox e CSS Grid: differenze, casi d’uso, esempi di codice e best practice per layout responsive. Include HowTo e FAQ ottimizzate SEO."/>
+	<link rel="canonical" href="https://scaledia.net/articoli/flexbox-vs-grid.html"/>
+	<link rel="alternate" hreflang="it" href="https://scaledia.net/articoli/flexbox-vs-grid.html"/>
+
+	<meta name="robots" content="index,follow,max-image-preview:large"/>
+	<meta name="referrer" content="no-referrer-when-downgrade"/>
+	<meta name="theme-color" content="#0d6efd"/>
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="Flexbox vs CSS Grid: quando usare l’uno, quando l’altro – Scaledia"/>
+	<meta property="og:description"
+		  content="Differenze, casi d’uso e consigli pratici per scegliere tra Flexbox e CSS Grid."/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:url" content="https://scaledia.net/articoli/flexbox-vs-grid.html"/>
+	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg"/>
+	<meta property="og:site_name" content="Scaledia"/>
+	<meta property="og:locale" content="it_IT"/>
+	<meta property="article:section" content="CSS"/>
+	<meta property="article:published_time" content="2025-07-10T09:00:00+02:00"/>
+	<meta property="article:modified_time" content="2025-08-12T09:00:00+02:00"/>
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:title" content="Flexbox vs CSS Grid: quando usare l’uno, quando l’altro – Scaledia"/>
+	<meta name="twitter:description" content="Confronto pratico tra Flexbox e CSS Grid con esempi e best practice."/>
+	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg"/>
+	<meta name="twitter:site" content="@TUO_HANDLE"/>
+
+	<!-- Favicon -->
+	<link rel="icon" href="/assets/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+		  rel="stylesheet"
+		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		  crossorigin="anonymous"/>
+
+	<style>
+        .object-fit-cover {
+            object-fit: cover
+        }
+
+        .toc {
+            position: sticky;
+            top: 1rem
+        }
+
+        .prose code {
+            background: #f8f9fa;
+            padding: .15rem .35rem;
+            border-radius: .25rem
+        }
+
+        pre code {
+            display: block;
+            padding: 1rem;
+            border-radius: .5rem;
+            background: #0b0b0b;
+            color: #f8f9fa;
+            overflow: auto
+        }
+
+        .lead-badge {
+            font-size: .85rem
+        }
+	</style>
+
+	<!-- JSON-LD -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "BreadcrumbList",
+					"itemListElement": [
+						{
+							"@type": "ListItem",
+							"position": 1,
+							"name": "Home",
+							"item": "https://scaledia.net/"
+						},
+						{
+							"@type": "ListItem",
+							"position": 2,
+							"name": "Articoli",
+							"item": "https://scaledia.net/articoli.html"
+						},
+						{
+							"@type": "ListItem",
+							"position": 3,
+							"name": "Flexbox vs CSS Grid: quando usare l’uno, quando l’altro",
+							"item": "https://scaledia.net/articoli/flexbox-vs-grid.html"
+						}
+					]
+				},
+				{
+					"@type": "BlogPosting",
+					"@id": "https://scaledia.net/articoli/flexbox-vs-grid.html#post",
+					"headline": "Flexbox vs CSS Grid: quando usare l’uno, quando l’altro",
+					"description": "Differenze e casi d’uso tra Flexbox e CSS Grid, con esempi pratici e best practice.",
+					"image": "https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg",
+					"datePublished": "2025-07-10T09:00:00+02:00",
+					"dateModified": "2025-08-12T09:00:00+02:00",
+					"author": {
+						"@type": "Person",
+						"name": "Scaledia"
+					},
+					"publisher": {
+						"@type": "Organization",
+						"name": "Scaledia",
+						"logo": {
+							"@type": "ImageObject",
+							"url": "https://scaledia.net/assets/img/logo.png",
+							"width": 512,
+							"height": 512
+						}
+					},
+					"mainEntityOfPage": {
+						"@type": "WebPage",
+						"@id": "https://scaledia.net/articoli/flexbox-vs-grid.html"
+					},
+					"inLanguage": "it-IT",
+					"keywords": [
+						"Flexbox",
+						"CSS Grid",
+						"layout responsive",
+						"CSS",
+						"web design",
+						"frontend",
+						"UI"
+					]
+				},
+				{
+					"@type": "FAQPage",
+					"@id": "https://scaledia.net/articoli/flexbox-vs-grid.html#faq",
+					"mainEntity": [
+						{
+							"@type": "Question",
+							"name": "Qual è la differenza principale tra Flexbox e CSS Grid?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Flexbox è un sistema monodimensionale (riga o colonna), CSS Grid è bidimensionale (righe e colonne insieme)."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Quando usare Flexbox?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Quando devi allineare elementi lungo un’unica direzione o creare layout adattabili su una dimensione."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Quando usare CSS Grid?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Quando devi creare layout complessi con righe e colonne, controllando entrambe le dimensioni."
+							}
+						}
+					]
+				},
+				{
+					"@type": "HowTo",
+					"@id": "https://scaledia.net/articoli/flexbox-vs-grid.html#howto",
+					"name": "Come scegliere tra Flexbox e CSS Grid",
+					"description": "Passi per decidere quale sistema di layout usare in base al progetto.",
+					"totalTime": "PT8M",
+					"estimatedCost": {
+						"@type": "MonetaryAmount",
+						"currency": "EUR",
+						"value": "0"
+					},
+					"supply": [
+						{
+							"@type": "HowToSupply",
+							"name": "Editor di testo"
+						}
+					],
+					"tool": [
+						{
+							"@type": "HowToTool",
+							"name": "Browser"
+						}
+					],
+					"step": [
+						{
+							"@type": "HowToStep",
+							"name": "Analizza il tipo di layout",
+							"url": "https://scaledia.net/articoli/flexbox-vs-grid.html#step-1",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Determina se il layout è monodimensionale o bidimensionale."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Valuta la complessità",
+							"url": "https://scaledia.net/articoli/flexbox-vs-grid.html#step-2",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Se ci sono righe e colonne dipendenti, preferisci Grid; per un’unica linea di elementi, Flexbox."
+								}
+							]
+						},
+						{
+							"@type": "HowToStep",
+							"name": "Prototipa e testa",
+							"url": "https://scaledia.net/articoli/flexbox-vs-grid.html#step-3",
+							"itemListElement": [
+								{
+									"@type": "HowToDirection",
+									"text": "Sperimenta entrambi e misura la facilità di mantenimento e performance."
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+	<div class="container">
+		<a class="navbar-brand fw-semibold" href="../index.html">Scaledia.net</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="primaryNav">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="../articoli.html">Articoli</a></li>
+				<li class="nav-item"><a class="nav-link" href="../index.html#chi-siamo">Chi siamo</a></li>
+				<li class="nav-item"><a class="nav-link" href="../index.html#contatti">Contatti</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Header -->
+<header class="py-4 border-bottom">
+	<nav class="container" aria-label="breadcrumb">
+		<ol class="breadcrumb mb-2">
+			<li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+			<li class="breadcrumb-item"><a href="../articoli.html">Articoli</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Flexbox vs CSS Grid</li>
+		</ol>
+		<div class="d-flex align-items-center gap-3">
+			<h1 class="h2 mb-0">Flexbox vs CSS Grid: quando usare l’uno, quando l’altro</h1>
+			<span class="badge text-bg-light lead-badge">CSS</span>
+		</div>
+		<p class="text-muted mb-0">Pubblicato il
+			<time datetime="2025-07-10">10 luglio 2025</time>
+			• Aggiornato il
+			<time datetime="2025-08-12">12 agosto 2025</time>
+			• ~7 min lettura
+		</p>
+	</nav>
+</header>
+
+<!-- Main -->
+<main class="py-5">
+	<div class="container">
+		<div class="row g-5">
+			<!-- Contenuto -->
+			<article class="col-lg-8 prose">
+				<p class="lead"><strong>Flexbox</strong> e <strong>CSS Grid</strong> sono due sistemi di layout
+					fondamentali in CSS: il primo eccelle su un’unica dimensione, il secondo gestisce griglie
+					bidimensionali complesse.</p>
+
+				<h2 id="differenze">Differenze principali</h2>
+				<ul>
+					<li>Flexbox → monodimensionale (riga o colonna).</li>
+					<li>CSS Grid → bidimensionale (righe e colonne).</li>
+				</ul>
+
+				<h2 id="quando-flexbox">Quando usare Flexbox</h2>
+				<ul>
+					<li>Allineamenti semplici su un’unica direzione.</li>
+					<li>Navbar, pulsanti e componenti lineari.</li>
+				</ul>
+
+				<h2 id="quando-grid">Quando usare CSS Grid</h2>
+				<ul>
+					<li>Layout complessi con righe e colonne.</li>
+					<li>Combinazioni flessibili di larghezze e altezze.</li>
+				</ul>
+
+				<h2 id="esempio">Esempio di codice</h2>
+				<pre><code>/* Flexbox */
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}</code></pre>
+
+				<h2 id="howto">Come scegliere</h2>
+				<p>1) Analizza la struttura.<br>2) Monodimensionale → Flexbox.<br>3) Bidimensionale → Grid.</p>
+
+				<hr class="my-4">
+				<p>Articoli correlati: <a href="html-semantico.html">HTML semantico</a></p>
+			</article>
+
+			<!-- Sidebar -->
+			<aside class="col-lg-4">
+				<div class="toc border rounded p-3 mb-4 bg-white">
+					<h2 class="h6">Sommario</h2>
+					<ol class="small m-0">
+						<li><a href="#differenze">Differenze</a></li>
+						<li><a href="#quando-flexbox">Quando Flexbox</a></li>
+						<li><a href="#quando-grid">Quando Grid</a></li>
+						<li><a href="#esempio">Esempio</a></li>
+						<li><a href="#howto">Come scegliere</a></li>
+					</ol>
+				</div>
+
+				<div class="border rounded p-3">
+					<h2 class="h6 mb-2">Metadati</h2>
+					<ul class="m-0 small list-unstyled">
+						<li><strong>Categoria:</strong> <a href="../articoli.html?categoria=html">CSS</a></li>
+						<li><strong>Pubblicato:</strong>
+							<time datetime="2025-07-20">20 lug 2025</time>
+						</li>
+						<li><strong>Aggiornato:</strong>
+							<time datetime="2025-08-12">12 ago 2025</time>
+						</li>
+						<li><strong>Tempo lettura:</strong> ~2 min</li>
+					</ul>
+				</div>
+
+				<!-- Richiamo FAQ -->
+				<div class="border rounded p-3 mt-4">
+					<h2 class="h6 mb-2">FAQ rapide</h2>
+					<ul class="small m-0">
+						<li><a href="#faq">Differenza principale?</a></li>
+					</ul>
+				</div>
+			</aside>
+		</div>
+
+		<!-- FAQ -->
+		<section id="faq" class="pt-5">
+			<h2 class="h4">FAQ</h2>
+			<div class="accordion" id="faqAccordion">
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q1">
+						<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1"
+								aria-expanded="true">Differenza principale?
+						</button>
+					</h3>
+					<div id="a1" class="accordion-collapse collapse show">
+						<div class="accordion-body">Flexbox è per una dimensione, Grid per due.</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<!-- Footer -->
+<footer class="py-4 border-top">
+	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between">
+		<small class="text-muted">© <span id="year"></span> Scaledia</small>
+	</div>
+</footer>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
