@@ -21,11 +21,11 @@
 	<meta property="og:type" content="article"/>
 	<meta property="og:url" content="https://scaledia.net/articoli/js-performance.html"/>
 	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-js-performance-1200x630.jpg"/>
+	<meta property="og:image:alt" content="Schema di ottimizzazione performance JavaScript e Core Web Vitals"/>
 	<meta property="og:site_name" content="Scaledia"/>
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="article:section" content="JavaScript"/>
 	<meta property="article:published_time" content="2025-06-28T09:00:00+02:00"/>
-	<meta property="article:modified_time" content="2025-08-12T09:00:00+02:00"/>
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image"/>
@@ -33,6 +33,7 @@
 	<meta name="twitter:description"
 		  content="Tecniche e strumenti per ridurre il costo del JS e migliorare i Core Web Vitals."/>
 	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-js-performance-1200x630.jpg"/>
+	<meta name="twitter:image:alt" content="Schema di ottimizzazione performance JavaScript e Core Web Vitals"/>
 	<meta name="twitter:site" content="@TUO_HANDLE"/>
 
 	<!-- Favicon -->
@@ -41,11 +42,15 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 
+	<link rel="preconnect" href="https://cdn.jsdelivr.net">
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 		  rel="stylesheet"
 		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 		  crossorigin="anonymous"/>
+	<noscript>
+		<link rel="stylesheet" href="/css/noscript.css">
+	</noscript>
 
 	<style>
         .object-fit-cover {
@@ -57,11 +62,11 @@
             top: 1rem
         }
 
-      		code {
-			background: #f8f9fa;
-			padding: .15rem .35rem;
-			border-radius: .25rem
-		}
+        code {
+            background: #f8f9fa;
+            padding: .15rem .35rem;
+            border-radius: .25rem
+        }
 
         pre code {
             display: block;
@@ -74,6 +79,14 @@
 
         .lead-badge {
             font-size: .85rem
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
         }
 	</style>
 
@@ -112,7 +125,7 @@
 					"description": "Tecniche per ridurre il costo del JavaScript: code splitting, lazy loading, debounce/throttle, misurazioni con Core Web Vitals.",
 					"image": "https://scaledia.net/assets/img/og/og-js-performance-1200x630.jpg",
 					"datePublished": "2025-06-28T09:00:00+02:00",
-					"dateModified": "2025-08-12T09:00:00+02:00",
+					"dateModified": "2025-08-13T13:32:56+02:00",
 					"author": {
 						"@type": "Person",
 						"name": "Scaledia"
@@ -135,10 +148,27 @@
 					"keywords": [
 						"performance JavaScript",
 						"Core Web Vitals",
+						"LCP",
+						"INP",
+						"TBT",
 						"code splitting",
+						"tree-shaking",
 						"lazy loading",
+						"defer",
+						"async",
+						"type=module",
+						"nomodule",
 						"debounce",
 						"throttle",
+						"requestIdleCallback",
+						"scheduler.postTask",
+						"Web Workers",
+						"SSR",
+						"CSR",
+						"ISR",
+						"hydration",
+						"islands architecture",
+						"performance budget",
 						"bundle",
 						"render blocking"
 					]
@@ -169,6 +199,46 @@
 							"acceptedAnswer": {
 								"@type": "Answer",
 								"text": "Debounce ritarda l’esecuzione finché l’evento si calma; throttle limita la frequenza massima di esecuzione in un intervallo."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Cosa sono module/nomodule e quando usarli?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Gli script ES modules (type=module) sono defer di default e supportano import/export; aggiungi un fallback nomodule per browser legacy. Utile per servire bundle moderni più piccoli."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Come ridurre il TBT senza riscrivere tutto?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Spezza i task lunghi, usa defer/async, carica on‑demand le feature, applica debounce/throttle e sposta lavori CPU‑bound in Web Workers."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Quando usare i Web Workers?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Quando hai calcoli pesanti o parsing che bloccano il main thread (es. elaborazioni di dati, trasformazioni). I Worker spostano il carico off‑thread."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "SSR, CSR o ISR: cosa impatta meno sul JS lato client?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "SSR e ISR riducono JS necessario al client e migliorano LCP; preferisci idratazione parziale/islands per limitare l’hydration globale."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Come definire un performance budget per il JS?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Imposta soglie di peso (es. &lt;170KB gz), TBT e INP. Automatizza in CI con Lighthouse CI/WebPageTest e interrompi la build quando superi i limiti."
 							}
 						}
 					]
@@ -236,13 +306,14 @@
 		}
 	</script>
 </head>
-<body>
 
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container">
 		<a class="navbar-brand fw-semibold" href="../index.html">Scaledia.net</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#primaryNav"
+				data-bs-target="#primaryNav"
 				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -272,71 +343,220 @@
 		<p class="text-muted mb-0">Pubblicato il
 			<time datetime="2025-06-28">28 giugno 2025</time>
 			• Aggiornato il
-			<time datetime="2025-08-12">12 agosto 2025</time>
-			• ~8 min lettura
+			<time datetime="2025-08-13">13 agosto 2025</time>
+			• ~15 min lettura
 		</p>
 	</nav>
 </header>
 
 <!-- Main -->
-<main class="py-5">
+<main id="contenuto" class="py-5">
 	<div class="container">
 		<div class="row g-5">
 			<!-- Contenuto -->
 			<article class="col-lg-8 lh-lg fs-5">
 				<p class="lead">
-					Il <strong>JavaScript</strong> è spesso il fattore più costoso per interattività e rendering. Qui
-					trovi tattiche mirate per ridurne peso ed esecuzione, migliorando i <em>Core Web Vitals</em>.
+					Il <strong>JavaScript</strong> è spesso il fattore più costoso per interattività e rendering. In
+					questa guida completa trovi strategie pratiche per <strong>ridurre il costo del JS</strong> (peso,
+					parsing, compilazione, esecuzione), migliorare i <em>Core Web Vitals</em> e mantenere alte le
+					performance nel tempo.
+				</p>
+
+				<h2 id="perche-js-vitals">Perché il JS impatta sui Core Web Vitals</h2>
+				<p>
+					Script grandi o eseguiti in momenti sbagliati bloccano il thread principale. Questo si riflette su:
+				</p>
+				<ul>
+					<li><strong>LCP</strong> (Largest Contentful Paint): JS di blocco ritarda il rendering dell’elemento
+						principale.
+					</li>
+					<li><strong>INP</strong> (Interaction to Next Paint): handler lenti o lunghi <em>Long Tasks</em>
+						peggiorano la reattività.
+					</li>
+					<li><strong>TBT</strong> (Total Blocking Time): misura quante finestre &gt; 50 ms impediscono input
+						e paint.
+					</li>
+				</ul>
+				<p>
+					Obiettivo: meno codice da scaricare, meno codice da eseguire, task più brevi e ben schedulati.
 				</p>
 
 				<h2 id="misura">Misura: dove stai perdendo tempo</h2>
 				<ul>
-					<li><strong>Lighthouse</strong> e <strong>DevTools Performance</strong> per individuare <em>Long
-						Tasks</em> &gt; 50 ms.
+					<li><strong>Lighthouse</strong> per una vista sintetica e raccomandazioni.</li>
+					<li><strong>DevTools Performance</strong>: cerca <em>Long Tasks</em> &gt; 50 ms, costi di <em>Evaluate
+						Script</em>, <em>Parse</em>, <em>Layout</em>.
 					</li>
-					<li>Monitora <strong>LCP</strong>, <strong>INP</strong> e <strong>TBT</strong> per capire l’impatto
-						del JS.
+					<li>Monitora <strong>LCP</strong>, <strong>INP</strong> e <strong>TBT</strong> con
+						<code>web-vitals</code> in produzione.
 					</li>
 				</ul>
+				<pre><code>// Esempio (web-vitals)
+import { onLCP, onINP, onCLS } from 'web-vitals';
+onLCP(console.log);
+onINP(console.log);
+onCLS(console.log);
+</code></pre>
+				<p>
+					Annota gli script più pesanti, i bundle più grandi e le interazioni con maggiore latenza (es.
+					ricerca, menu, caroselli).
+				</p>
 
 				<h2 id="riduci">Riduci e spezza il codice</h2>
 				<ul>
-					<li>Rimuovi dipendenze non usate / sostituisci con alternative leggere.</li>
-					<li><strong>Code splitting</strong> e <strong>dynamic import()</strong> per caricare solo ciò che
-						serve.
+					<li><strong>Rimuovi</strong> dipendenze non usate. Valuta alternative più leggere (dayjs &gt;
+						moment, Preact &gt; React, librerie vanilla).
 					</li>
-					<li>Segna gli script non critici con <code>defer</code>/<code>async</code>.</li>
+					<li><strong>Tree-shaking</strong>: usa <em>ES modules</em> e imposta <code>sideEffects</code>
+						correttamente nel <code>package.json</code>.
+					</li>
+					<li><strong>Code splitting</strong>: split per route, per feature e per vendor. Carica on‑demand con
+						<code>import()</code>.
+					</li>
+					<li><strong>Polyfill mirati</strong>: evita polyfill globali, usa <em>polyfill.io</em> o <em>feature
+						detection</em>.
+					</li>
 				</ul>
+				<pre><code>// ESM + sideEffects
+// package.json
+{
+  "type": "module",
+  "sideEffects": ["*.css"]
+}
+</code></pre>
+
+				<h2 id="caricamento">Caricamento: defer, async, module/nomodule, preload/prefetch</h2>
+				<ul>
+					<li><code>&lt;script defer&gt;</code> non blocca l'HTML, esegue in ordine; preferibile per script
+						non critici.
+					</li>
+					<li><code>&lt;script async&gt;</code> scarica/esegue appena pronto; attenzione all'ordine.</li>
+					<li><code>type="module"</code> è defer di default; abbinalo a <code>nomodule</code> per fallback
+						legacy.
+					</li>
+					<li><code>preload</code>/<code>prefetch</code>: ottimizza la priorità delle risorse.</li>
+				</ul>
+				<pre><code>&lt;link rel="preload" as="script" href="/app.js"&gt;
+&lt;script type="module" src="/app.js" defer&gt;&lt;/script&gt;
+&lt;script nomodule src="/legacy.js" defer&gt;&lt;/script&gt;
+</code></pre>
 
 				<h2 id="lazy">Lazy loading e caricamento condizionale</h2>
-				<ul>
-					<li>Carica componenti/JS solo quando entrano nel viewport o dopo interazione utente.</li>
-					<li>Usa <code>loading="lazy"</code> per immagini/iframe e inizializza JS on‑demand.</li>
-				</ul>
-
-				<h2 id="eventi">Debounce, throttle e scheduling</h2>
-				<ul>
-					<li><strong>Debounce</strong> per ricerche on‑type e resize; <strong>Throttle</strong> per
-						scroll/drag.
-					</li>
-					<li>Suddividi compiti pesanti (chunking) e usa <code>requestIdleCallback</code> o scheduler.</li>
-				</ul>
-
-				<h2 id="esempi">Esempi veloci</h2>
-				<pre><code>// dynamic import
-button.addEventListener('click', async () => {
-  const { openModal } = await import('./modal.js');
-  openModal();
+				<p>Carica componenti solo quando servono (on‑demand) o quando entrano nel viewport.</p>
+				<pre><code>// IntersectionObserver + import dinamico
+const el = document.querySelector('#widget-grafico');
+const io = new IntersectionObserver(async (entries) => {
+  if (entries.some(e =&gt; e.isIntersecting)) {
+    const { initChart } = await import('./chart.js');
+    initChart(el);
+    io.disconnect();
+  }
 });
+io.observe(el);
+</code></pre>
+				<p>Per immagini/iframe usa <code>loading="lazy"</code> e <code>decoding="async"</code>.</p>
 
-// debounce
-function debounce(fn, delay=300){
-  let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args),delay); };
+				<h2 id="eventi">Eventi ad alta frequenza: debounce, throttle, passive</h2>
+				<p>Riduci il lavoro eseguito durante <em>scroll</em>, <em>resize</em>, <em>input</em>.</p>
+				<pre><code>// debounce
+function debounce(fn, delay = 300) {
+  let t; return (...args) =&gt; { clearTimeout(t); t = setTimeout(() =&gt; fn(...args), delay); };
 }
-
 // throttle
-function throttle(fn, wait=200){
-  let t=0; return (...a)=>{ const n=Date.now(); if(n-t&gt;=wait){ t=n; fn(...a); } };
+function throttle(fn, wait = 200) {
+  let t = 0; return (...a) =&gt; { const n = Date.now(); if (n - t &gt;= wait) { t = n; fn(...a); } };
+}
+// passive listeners
+window.addEventListener('scroll', throttle(onScroll, 100), { passive: true });
+// rAF per animazioni fluide
+function onScroll() { requestAnimationFrame(updateParallax); }
+</code></pre>
+
+				<h2 id="scheduling">Scheduling e lavori in background</h2>
+				<ul>
+					<li><code>requestIdleCallback</code>: esegui attività non critiche quando il browser è idle.</li>
+					<li><code>scheduler.postTask</code>: priorità fine‑grained dove supportato.</li>
+					<li><strong>Web Workers</strong>: sposta CPU‑bound off‑thread (parsing, calcoli, trasformazioni).
+					</li>
+				</ul>
+				<pre><code>// requestIdleCallback
+requestIdleCallback(() =&gt; preloadLessCriticalModules());
+
+// Web Worker semplice
+// main.js
+const worker = new Worker('/worker.js', { type: 'module' });
+worker.postMessage({ type: 'compute', payload: bigArray });
+worker.onmessage = (e) =&gt; render(e.data);
+
+// worker.js
+self.onmessage = (e) =&gt; {
+  if (e.data.type === 'compute') {
+    // lavoro pesante qui
+    self.postMessage(process(e.data.payload));
+  }
+};
+</code></pre>
+
+				<h2 id="rendering">Rendering e framework: SSR/CSR/ISR, hydration e islands</h2>
+				<ul>
+					<li><strong>SSR</strong>: HTML pronto velocizza LCP; idrata solo dove serve.</li>
+					<li><strong>Islands/Partial hydration</strong>: invia JS per componenti interattivi, non per tutta
+						la pagina.
+					</li>
+					<li><strong>Streaming</strong> e <strong>resumability</strong>: riducono JS al client e tempi di
+						attesa.
+					</li>
+				</ul>
+				<p>Evita idratazioni globali quando bastano micro‑interazioni locali.</p>
+
+				<h2 id="budget">Performance budget e monitoraggio continuo</h2>
+				<ul>
+					<ul>
+						<li><strong>RUM</strong>: invia i Vitals reali a un endpoint (es. /rum) e confronta per release.
+						</li>
+						<li><strong>CI</strong>: Lighthouse CI/WebPageTest con soglie minime e regressioni bloccanti.
+						</li>
+					</ul>
+					<pre><code>// RUM beacon (esempio minimale)
+import { onLCP, onINP, onCLS } from 'web-vitals';
+function send(metric) {
+  navigator.sendBeacon('/rum', JSON.stringify(metric));
+}
+onLCP(send); onINP(send); onCLS(send);
+</code></pre>
+					<pre><code># lighthouse-ci (lighthouserc.json)
+{
+  "ci": {
+    "collect": { "numberOfRuns": 3, "staticDistDir": "dist" },
+    "assert": {
+      "assertions": {
+        "performance": ["error", {"minScore": 0.9}],
+        "total-blocking-time": ["error", {"maxNumericValue": 200}],
+        "largest-contentful-paint": ["error", {"maxNumericValue": 2500}]
+      }
+    }
+  }
+}
+</code></pre>
+
+					<li>Definisci budget: peso JS &lt; 170 KB gz, <abbr title="Total Blocking Time">TBT</abbr> &lt; 200
+						ms, <abbr title="Interaction to Next Paint">INP</abbr> &lt; 200 ms.
+					</li>
+					<li>Metti i budget in CI (Lighthouse CI, WebPageTest) e fallisci la build se superi le soglie.</li>
+					<li>Traccia i Vitals reali con RUM e confronta per release.</li>
+				</ul>
+
+				<h2 id="esempi">Esempi completi</h2>
+				<pre><code>// Split per route
+async function bootstrapRoute(route) {
+  if (route === 'dashboard') {
+    const [{ initChart }, { initTable }] = await Promise.all([
+      import('./features/chart.js'),
+      import('./features/table.js')
+    ]);
+    initChart();
+    initTable();
+  }
 }
 </code></pre>
 
@@ -352,8 +572,9 @@ function throttle(fn, wait=200){
 
 				<hr class="my-4"/>
 				<p class="mb-0">Ti interessa il layout? Leggi anche:
-					<a href="flexbox-vs-grid.html">Flexbox vs CSS Grid</a> e
-					<a href="html-semantico.html">HTML semantico</a>.
+					<a href="flexbox-vs-grid.html">Flexbox vs CSS Grid</a>,
+					<a href="html-semantico.html">HTML semantico</a> e
+					<a href="accessibilita-web.html">Accessibilità Web</a>.
 				</p>
 			</article>
 
@@ -363,10 +584,15 @@ function throttle(fn, wait=200){
 					<h2 class="h6">Sommario</h2>
 					<nav aria-label="Sommario dell’articolo">
 						<ol class="mb-0 small">
+							<li><a href="#perche-js-vitals">Perché JS e Vitals</a></li>
 							<li><a href="#misura">Misura</a></li>
 							<li><a href="#riduci">Riduci &amp; split</a></li>
+							<li><a href="#caricamento">Caricamento</a></li>
 							<li><a href="#lazy">Lazy loading</a></li>
-							<li><a href="#eventi">Debounce/Throttle</a></li>
+							<li><a href="#eventi">Eventi</a></li>
+							<li><a href="#scheduling">Scheduling</a></li>
+							<li><a href="#rendering">Rendering</a></li>
+							<li><a href="#budget">Budget</a></li>
 							<li><a href="#esempi">Esempi</a></li>
 							<li><a href="#howto">HowTo</a></li>
 						</ol>
@@ -382,9 +608,9 @@ function throttle(fn, wait=200){
 							<time datetime="2025-06-28">28 giu 2025</time>
 						</li>
 						<li><strong>Aggiornato:</strong>
-							<time datetime="2025-08-12">12 ago 2025</time>
+							<time datetime="2025-08-13">13 ago 2025</time>
 						</li>
-						<li><strong>Tempo lettura:</strong> ~8 min</li>
+						<li><strong>Tempo lettura:</strong> ~15 min</li>
 					</ul>
 				</div>
 
@@ -394,6 +620,11 @@ function throttle(fn, wait=200){
 						<li><a href="#faq">Impatto sui Core Web Vitals?</a></li>
 						<li><a href="#faq">Ridurre o differire il JS?</a></li>
 						<li><a href="#faq">Debounce vs Throttle?</a></li>
+						<li><a href="#faq">Module/nomodule quando usarli?</a></li>
+						<li><a href="#faq">Come ridurre il TBT?</a></li>
+						<li><a href="#faq">Quando usare Web Workers?</a></li>
+						<li><a href="#faq">SSR, CSR o ISR?</a></li>
+						<li><a href="#faq">Performance budget per JS?</a></li>
 					</ul>
 				</div>
 			</aside>
@@ -452,6 +683,87 @@ function throttle(fn, wait=200){
 						</div>
 					</div>
 				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q4">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+							Cosa sono module/nomodule e quando usarli?
+						</button>
+					</h3>
+					<div id="a4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q4">
+						<div class="accordion-body">
+							Gli script ES modules (<code>type="module"</code>) sono <em>defer</em> di default e
+							supportano import/export. Aggiungi un fallback <code>nomodule</code> per browser legacy:
+							consente di servire bundle moderni più piccoli ai browser moderni.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q5">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
+							Come ridurre il TBT senza riscrivere tutto?
+						</button>
+					</h3>
+					<div id="a5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q5">
+						<div class="accordion-body">
+							Spezza i task lunghi, usa <code>defer/async</code>, carica on‑demand le feature, applica
+							<em>debounce/throttle</em> e sposta lavori CPU‑bound in <strong>Web Workers</strong>.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q6">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a6" aria-expanded="false" aria-controls="a6">
+							Quando usare i Web Workers?
+						</button>
+					</h3>
+					<div id="a6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q6">
+						<div class="accordion-body">
+							Quando hai calcoli pesanti o parsing che bloccano il main thread (es. elaborazioni di dati,
+							trasformazioni). I Worker spostano il carico off‑thread.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q7">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a7" aria-expanded="false" aria-controls="a7">
+							SSR, CSR o ISR: cosa impatta meno sul JS lato client?
+						</button>
+					</h3>
+					<div id="a7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q7">
+						<div class="accordion-body">
+							<strong>SSR</strong> e <strong>ISR</strong> riducono JS necessario al client e migliorano
+							LCP; preferisci idratazione parziale/islands per limitare l’hydration globale.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q8">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a8" aria-expanded="false" aria-controls="a8">
+							Come definire un performance budget per il JS?
+						</button>
+					</h3>
+					<div id="a8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q8">
+						<div class="accordion-body">
+							Imposta soglie di peso (es. &lt; 170 KB gz), TBT e INP. Automatizza in CI con Lighthouse
+							CI/WebPageTest e interrompi la build quando superi i limiti.
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -461,16 +773,18 @@ function throttle(fn, wait=200){
 <!-- Footer -->
 <footer class="py-4 border-top">
 	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
+		<small class="text-muted">&copy;
+			<time id="year" datetime="2025">2025</time>
+			Scaledia</small>
 		<nav aria-label="Link social">
 			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
-			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">LinkedIn</a>
 		</nav>
 	</div>
 </footer>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 <script>

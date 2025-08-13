@@ -1,0 +1,29 @@
+/* Fallback CSS per utenti con JavaScript disabilitato */
+
+/* 1) Navbar e collapse generici (navbar, accordion, ecc.) */
+.collapse,
+.accordion-collapse {
+  display: block !important;
+  height: auto !important;
+  visibility: visible !important;
+}
+
+.navbar-toggler {
+  display: none !important;
+}
+
+/* 2) Dropdown: mostra il menu come elenco statico */
+.dropdown-menu {
+  display: block !important;
+  position: static !important;
+  float: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* 3) Migliorie minime per accessibilità visiva */
+.dropdown-toggle[aria-expanded] {
+  /* evita stati visivi ingannevoli */
+  pointer-events: none;
+}

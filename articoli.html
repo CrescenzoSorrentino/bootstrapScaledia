@@ -20,6 +20,7 @@
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="https://scaledia.net/articoli.html"/>
 	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-hero-1200x630.jpg"/>
+	<meta property="og:image:alt" content="Scaledia: elenco articoli su HTML, CSS e JavaScript"/>
 	<meta property="og:site_name" content="Scaledia"/>
 	<meta property="og:locale" content="it_IT"/>
 
@@ -28,6 +29,7 @@
 	<meta name="twitter:title" content="Articoli – Scaledia: guide HTML, CSS e JavaScript"/>
 	<meta name="twitter:description" content="Tutti gli articoli e le guide su HTML, CSS e JavaScript."/>
 	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-hero-1200x630.jpg"/>
+	<meta name="twitter:image:alt" content="Scaledia: elenco articoli su HTML, CSS e JavaScript"/>
 	<meta name="twitter:site" content="@TUO_HANDLE"/>
 
 	<!-- Favicon -->
@@ -36,11 +38,15 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 
+	<link rel="preconnect" href="https://cdn.jsdelivr.net">
 	<!-- Bootstrap 5.3.2 CSS -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 		  rel="stylesheet"
 		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 		  crossorigin="anonymous"/>
+	<noscript>
+		<link rel="stylesheet" href="/css/noscript.css">
+	</noscript>
 
 	<style>
         .object-fit-cover {
@@ -54,6 +60,14 @@
         @media (max-width: 575.98px) {
             .filters .form-select, .filters .form-control {
                 width: 100%
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
             }
         }
 	</style>
@@ -108,13 +122,16 @@
 		}
 	</script>
 </head>
+
 <body>
+<a class="visually-hidden-focusable" href="#lista-articoli">Salta al contenuto</a>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container">
 		<a class="navbar-brand fw-semibold" href="index.html">Scaledia.net</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#primaryNav"
+				data-bs-target="#primaryNav"
 				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -146,7 +163,8 @@
 	<div class="container">
 
 		<!-- FILTRI (GET, action omessa -> ricarica l'URL corrente) -->
-		<form class="filters row g-2 align-items-center mb-4" method="get" role="search" aria-label="Filtra articoli">
+		<form class="filters row g-2 align-items-center mb-4" method="get" role="search" aria-label="Filtra articoli"
+			  aria-controls="lista-articoli">
 			<div class="col-12 col-md-auto">
 				<label class="visually-hidden" for="q">Cerca</label>
 				<input class="form-control" type="search" id="q" name="q" placeholder="Cerca articoli…" value="">
@@ -178,6 +196,9 @@
 		<!-- LISTA ARTICOLI -->
 		<section aria-labelledby="lista-articoli">
 			<h2 id="lista-articoli" class="visually-hidden">Elenco articoli</h2>
+			<div class="text-muted mb-3" aria-live="polite">
+				<span id="risultati-filtro">Tutti gli articoli</span>
+			</div>
 
 			<div class="row g-4">
 
@@ -190,7 +211,7 @@
 					<div class="card h-100 shadow-sm">
 						<a href="articoli/html-semantico.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
-								 src="assets/img/cover/html-semantico-640.jpg"
+								 width="640" height="360" src="assets/img/cover/html-semantico-640.jpg"
 								 srcset="assets/img/cover/html-semantico-640.jpg 640w, assets/img/cover/html-semantico-1280.jpg 1280w"
 								 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
 								 alt="HTML semantico: struttura corretta di una pagina"
@@ -211,7 +232,7 @@
 								codice.</p>
 							<div class="mt-auto text-muted small d-flex gap-2 align-items-center">
 								<time datetime="2025-07-20">20 lug 2025</time>
-								· ~5 min
+								· ~14 min
 							</div>
 						</div>
 					</div>
@@ -225,7 +246,7 @@
 					<div class="card h-100 shadow-sm">
 						<a href="articoli/flexbox-vs-grid.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
-								 src="assets/img/cover/flex-grid-640.jpg"
+								 width="640" height="360" src="assets/img/cover/flex-grid-640.jpg"
 								 srcset="assets/img/cover/flex-grid-640.jpg 640w, assets/img/cover/flex-grid-1280.jpg 1280w"
 								 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
 								 alt="Layout moderni con Flexbox e CSS Grid"
@@ -246,7 +267,7 @@
 								responsive.</p>
 							<div class="mt-auto text-muted small d-flex gap-2 align-items-center">
 								<time datetime="2025-07-10">10 lug 2025</time>
-								· ~7 min
+								· ~12 min
 							</div>
 						</div>
 					</div>
@@ -256,11 +277,11 @@
 				<article class="col-md-6 col-lg-4"
 						 data-category="accessibilita"
 						 data-title="accessibilita web aria wai wcag inclusione"
-						 data-date="2025-08-01">
+						 data-date="2025-07-05">
 					<div class="card h-100 shadow-sm">
 						<a href="articoli/accessibilita-web.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
-								 src="assets/img/cover/accessibilita-640.jpg"
+								 width="640" height="360" src="assets/img/cover/accessibilita-640.jpg"
 								 srcset="assets/img/cover/accessibilita-640.jpg 640w, assets/img/cover/accessibilita-1280.jpg 1280w"
 								 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
 								 alt="Accessibilità web: principi e linee guida"
@@ -279,8 +300,8 @@
 							</h3>
 							<p class="text-muted mb-3">ARIA, WAI e WCAG: come rendere il web inclusivo per tutti.</p>
 							<div class="mt-auto text-muted small d-flex gap-2 align-items-center">
-								<time datetime="2025-08-01">5 ago 2025</time>
-								· ~6 min
+								<time datetime="2025-07-05">5 lug 2025</time>
+								· ~12 min
 							</div>
 						</div>
 					</div>
@@ -294,7 +315,7 @@
 					<div class="card h-100 shadow-sm">
 						<a href="articoli/js-performance.html" class="ratio ratio-16x9">
 							<img class="object-fit-cover rounded-top"
-								 src="assets/img/cover/js-perf-640.jpg"
+								 width="640" height="360" src="assets/img/cover/js-perf-640.jpg"
 								 srcset="assets/img/cover/js-perf-640.jpg 640w, assets/img/cover/js-perf-1280.jpg 1280w"
 								 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
 								 alt="Performance JavaScript: best practice e ottimizzazioni"
@@ -314,7 +335,7 @@
 							<p class="text-muted mb-3">Split del codice, lazy‑loading, debounce/throttle e metriche.</p>
 							<div class="mt-auto text-muted small d-flex gap-2 align-items-center">
 								<time datetime="2025-06-28">28 giu 2025</time>
-								· ~8 min
+								· ~15 min
 							</div>
 						</div>
 					</div>
@@ -340,15 +361,17 @@
 
 <footer class="py-4 border-top">
 	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
+		<small class="text-muted">&copy;
+			<time id="year" datetime="2025">2025</time>
+			Scaledia</small>
 		<nav aria-label="Link social">
 			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
-			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">LinkedIn</a>
 		</nav>
 	</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 <script>
@@ -362,7 +385,7 @@
         const cat = (params.get('categoria') || '').toLowerCase();
         const sort = (params.get('sort') || 'recenti').toLowerCase();
 
-        // sincronizza il form
+        // sincronizza il form (progressive enhancement: il form funziona anche senza JS)
         const qInput = document.querySelector('#q');
         const catSel = document.querySelector('#categoria');
         const sortSel = document.querySelector('#sort');
@@ -392,8 +415,16 @@
             el.style.display = matches(el) ? '' : 'none';
         });
 
+        // aggiorna feedback
+        const visibleCards = cards.filter(el => el.style.display !== 'none');
+        const feedback = document.getElementById('risultati-filtro');
+        if (feedback) {
+            feedback.textContent = `${visibleCards.length} articol${visibleCards.length === 1 ? 'o' : 'i'} trovat${visibleCards.length === 1 ? 'o' : 'i'}`;
+            if (q) feedback.textContent += ` per "${q}"`;
+            if (cat) feedback.textContent += ` in ${cat}`;
+        }
+
         // ordina visibili
-        const visible = cards.filter(el => el.style.display !== 'none');
         const byDateDesc = (a, b) => (b.dataset.date || '').localeCompare(a.dataset.date || ''); // recenti
         const byDateAsc = (a, b) => (a.dataset.date || '').localeCompare(b.dataset.date || ''); // vecchi
         const byTitleAZ = (a, b) => (a.dataset.title || '').localeCompare(b.dataset.title || ''); // A-Z
@@ -402,7 +433,7 @@
         if (sort === 'vecchi') sorter = byDateAsc;
         if (sort === 'alfabetico') sorter = byTitleAZ;
 
-        visible.sort(sorter).forEach(el => grid.appendChild(el));
+        visibleCards.sort(sorter).forEach(el => grid.appendChild(el));
     })();
 </script>
 

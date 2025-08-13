@@ -21,11 +21,11 @@
 	<meta property="og:type" content="article"/>
 	<meta property="og:url" content="https://scaledia.net/articoli/html-semantico.html"/>
 	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
+	<meta property="og:image:alt" content="Schema e tag per una pagina con HTML semantico"/>
 	<meta property="og:site_name" content="Scaledia"/>
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="article:section" content="HTML"/>
 	<meta property="article:published_time" content="2025-07-20T09:00:00+02:00"/>
-	<meta property="article:modified_time" content="2025-08-12T09:00:00+02:00"/>
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image"/>
@@ -33,6 +33,7 @@
 	<meta name="twitter:description"
 		  content="Struttura semantica, esempi, HowTo e FAQ per pagine web accessibili e SEO-friendly."/>
 	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
+	<meta name="twitter:image:alt" content="Schema e tag per una pagina con HTML semantico"/>
 	<meta name="twitter:site" content="@TUO_HANDLE"/>
 
 	<!-- Favicon -->
@@ -46,6 +47,9 @@
 		  rel="stylesheet"
 		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 		  crossorigin="anonymous"/>
+	<noscript>
+		<link rel="stylesheet" href="/css/noscript.css">
+	</noscript>
 
 	<style>
         .object-fit-cover {
@@ -57,11 +61,11 @@
             top: 1rem
         }
 
-      		code {
-			background: #f8f9fa;
-			padding: .15rem .35rem;
-			border-radius: .25rem
-		}
+        code {
+            background: #f8f9fa;
+            padding: .15rem .35rem;
+            border-radius: .25rem
+        }
 
         pre code {
             display: block;
@@ -74,6 +78,14 @@
 
         .lead-badge {
             font-size: .85rem
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
         }
 	</style>
 
@@ -112,7 +124,7 @@
 					"description": "Guida pratica all’HTML semantico con tag, esempi, HowTo e best practice per SEO e accessibilità.",
 					"image": "https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg",
 					"datePublished": "2025-07-20T09:00:00+02:00",
-					"dateModified": "2025-08-12T09:00:00+02:00",
+					"dateModified": "2025-08-13T13:12:05+02:00",
 					"author": {
 						"@type": "Person",
 						"name": "Scaledia"
@@ -181,6 +193,22 @@
 							"acceptedAnswer": {
 								"@type": "Answer",
 								"text": "Uno solo per pagina: rappresenta il contenuto principale esclusi header, nav e footer."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Devo usare ARIA se ho già i tag semantici?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "No, i ruoli impliciti di nav, main, header, footer sono sufficienti. Usa ARIA solo quando non esiste un elemento nativo adatto."
+							}
+						},
+						{
+							"@type": "Question",
+							"name": "Meglio microdati o JSON-LD?",
+							"acceptedAnswer": {
+								"@type": "Answer",
+								"text": "Google consiglia JSON-LD: è più chiaro e manutenibile. Assicurati che i dati corrispondano al contenuto visibile."
 							}
 						}
 					]
@@ -270,13 +298,14 @@
 		}
 	</script>
 </head>
-<body>
 
+<body>
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container">
 		<a class="navbar-brand fw-semibold" href="../index.html">Scaledia.net</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#primaryNav"
+				data-bs-target="#primaryNav"
 				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -306,13 +335,13 @@
 		<p class="text-muted mb-0">Pubblicato il
 			<time datetime="2025-07-20">20 luglio 2025</time>
 			• Aggiornato il
-			<time datetime="2025-08-12">12 agosto 2025</time>
-			• ~5 min lettura
+			<time datetime="2025-08-13">13 agosto 2025</time>
+			• ~14 min lettura
 		</p>
 	</nav>
 </header>
 
-<main class="py-5">
+<main id="contenuto" class="py-5">
 	<div class="container">
 		<div class="row g-5">
 			<!-- Contenuto -->
@@ -320,7 +349,7 @@
 				<meta itemprop="headline" content="HTML semantico: guida pratica"/>
 				<meta itemprop="author" content="Scaledia"/>
 				<meta itemprop="datePublished" content="2025-07-20"/>
-				<meta itemprop="dateModified" content="2025-08-12"/>
+				P25-08-13"/>
 				<meta itemprop="image" content="https://scaledia.net/assets/img/og/og-html-semantico-1200x630.jpg"/>
 
 				<p class="lead">
@@ -396,6 +425,330 @@
 					<li><code>&lt;time datetime&gt;</code> in formato ISO.</li>
 				</ul>
 
+				<h2 id="div-vs-section" class="mt-5">Div vs Section: quando usare cosa</h2>
+				<p>
+					<code>&lt;section&gt;</code> introduce una nuova sezione del documento e dovrebbe avere
+					sempre un titolo (es. un <code>h2</code>). Usa <code>&lt;div&gt;</code> quando ti serve un wrapper
+					puramente stilistico o per raggruppare elementi senza significato strutturale. Se non puoi assegnare
+					un titolo significativo, probabilmente non è una <em>section</em> ma un <em>div</em>.
+				</p>
+				<pre><code>&lt;!-- Corretto --&gt;
+&lt;section aria-labelledby="benefici-title"&gt;
+  &lt;h2 id="benefici-title"&gt;Benefici dell'HTML semantico&lt;/h2&gt;
+  &lt;p&gt;Migliora navigazione, SEO e manutenzione.&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;!-- Wrapper non semantico --&gt;
+&lt;div class="card"&gt;...&lt;/div&gt;</code></pre>
+				<p class="mt-3"><strong>Esempi aggiuntivi</strong></p>
+				<pre><code>&lt;!-- Sbagliato: section senza titolo significativo --&gt;
+&lt;section&gt;
+  &lt;div class="grid"&gt;...&lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- Corretto: wrapper non semantico oppure section con heading --&gt;
+&lt;div class="grid"&gt;...&lt;/div&gt;
+&lt;!-- oppure --&gt;
+&lt;section&gt;
+  &lt;h2&gt;Galleria progetti&lt;/h2&gt;
+  &lt;div class="grid"&gt;...&lt;/div&gt;
+&lt;/section&gt;</code></pre>
+				<pre><code>&lt;!-- Sbagliato: usare section solo per stile --&gt;
+&lt;section class="p-4"&gt;...&lt;/section&gt;
+
+&lt;!-- Corretto: usa div per puro layout/stile --&gt;
+&lt;div class="p-4"&gt;...&lt;/div&gt;</code></pre>
+
+
+				<h2 id="header-footer-multipli">Header e footer multipli</h2>
+				<p>
+					Puoi avere un <code>&lt;header&gt;</code> e un <code>&lt;footer&gt;</code> per la pagina intera e
+					anche
+					per ogni <code>&lt;article&gt;</code> o <code>&lt;section&gt;</code>. Quando ne hai più di uno,
+					valuta
+					l’uso di <code>aria-label</code> o <code>aria-labelledby</code> per distinguerli (es. "Header
+					articolo").
+				</p>
+
+				<h2 id="nav-breadcrumb">Nav e breadcrumb</h2>
+				<p>
+					Usa <code>&lt;nav&gt;</code> per blocchi di navigazione primari, secondari e breadcrumb. Se ne hai
+					più di uno, etichettali con <code>aria-label</code> (es. "Principale", "Secondaria", "Breadcrumb").
+				</p>
+				<pre><code>&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li aria-current="page"&gt;Articolo&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+
+				<h2 id="immagini-figure">Immagini, figure e alt</h2>
+				<ul>
+					<li>Usa <code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> per immagini con didascalia.
+					</li>
+					<li><code>alt=""</code> vuoto per immagini puramente decorative.</li>
+					<li>Non ripetere testo vicino: l’<code>alt</code> deve aggiungere valore per chi non vede
+						l’immagine.
+					</li>
+				</ul>
+				<pre><code>&lt;figure&gt;
+  &lt;img src="diagramma.png" alt="Relazioni tra header, main, article e aside" /&gt;
+  &lt;figcaption&gt;Struttura tipica di una pagina semantica&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+
+				<h2 id="link-vs-button">Link vs button</h2>
+				<p>
+					Usa un <code>&lt;a&gt;</code> per navigare a un URL (anche ancore interne). Usa un <code>&lt;button&gt;</code>
+					per azioni in pagina (apri modale, invia form). Evita di stilizzare link come bottoni se cambiano
+					URL
+					o viceversa: confonde utenti e assistive tech.
+				</p>
+
+				<h2 id="form-tabelle">Form e tabelle semantiche</h2>
+				<ul>
+					<li>Associa sempre <code>&lt;label for&gt;</code> all’<code>id</code> dell’input.</li>
+					<li>Raggruppa controlli correlati con <code>&lt;fieldset&gt;</code> e una
+						<code>&lt;legend&gt;</code> descrittiva.
+					</li>
+					<li>Nelle tabelle usa <code>&lt;caption&gt;</code>,
+						<code>&lt;thead&gt;</code>/<code>&lt;tbody&gt;</code>,
+						<code>&lt;th scope="col/row"&gt;</code>. Per tabelle complesse puoi usare
+						<code>headers</code>/<code>id</code>.
+					</li>
+				</ul>
+
+				<h2 id="aria-ruoli">ARIA: quando usarla</h2>
+				<p>
+					Preferisci i ruoli impliciti dei tag semantici. Aggiungi ARIA solo quando non esiste un elemento
+					nativo
+					che esprima quel ruolo. Evita di sovrascrivere ruoli impliciti (es. non mettere <code>role="navigation"</code>
+					su un <code>&lt;nav&gt;</code>). Usa <code>aria-live</code> per aggiornamenti dinamici, con
+					moderazione.
+				</p>
+
+				<h2 id="dati-strutturati">Microdati, RDFa e JSON-LD</h2>
+				<p>
+					Per i motori di ricerca, Google consiglia <strong>JSON-LD</strong> separato dalla marcatura visiva.
+					È più
+					manutenibile rispetto ai microdati sparsi nell’HTML. Mantieni coerenza tra contenuto visibile e dati
+					strutturati (titoli, date, autore), ed evita mismatch.
+				</p>
+
+				<h2 id="errori-comuni">Errori comuni</h2>
+				<ul>
+					<li>Più di un <code>&lt;main&gt;</code> nella stessa pagina.</li>
+					<li>Salti nei livelli di heading (da <code>h1</code> a <code>h3</code> senza un <code>h2</code>).
+					</li>
+					<li>Uso di <code>&lt;section&gt;</code> senza titolo.</li>
+					<li>Link usati come bottoni e viceversa.</li>
+					<li>Testi di link vaghi ("clicca qui"). Preferisci ancore descrittive.</li>
+				</ul>
+
+				<h2 id="checklist-seo">Checklist rapida SEO + accessibilità</h2>
+				<ul>
+					<li>Un <code>h1</code> unico e coerente col <code>&lt;title&gt;</code>.</li>
+					<li>Struttura gerarchica chiara con heading e sezioni.</li>
+					<li>Immagini con <code>alt</code> adeguato; <code>&lt;figure&gt;</code> dove serve.</li>
+					<li>Link descrittivi, breadcrumb e skip-link se possibile.</li>
+					<li>Dati strutturati validi (BlogPosting/FAQ/HowTo) allineati al contenuto.</li>
+				</ul>
+
+				<h2 id="glossario">Glossario minimo</h2>
+				<dl>
+					<dt>Landmark</dt>
+					<dd>Regioni della pagina (header, nav, main, aside, footer) riconosciute dagli screen reader.</dd>
+					<dt>Rich snippet</dt>
+					<dd>Risultati arricchiti nei motori di ricerca grazie ai dati strutturati.</dd>
+				</dl>
+
+				<!-- APPROFONDIMENTI: sezioni aggiuntive per copertura SEO -->
+				<h2 id="pattern-pagine" class="mt-5">Pattern semantici per tipologie di pagina</h2>
+				<p>
+					I tag semantici non sono teorici: cambiano a seconda del <em>tipo di pagina</em>. Di seguito alcuni
+					pattern collaudati da usare come base e adattare al tuo progetto.
+				</p>
+				<h3 class="h4">Blog post / articolo</h3>
+				<pre><code>&lt;header&gt;
+  &lt;nav aria-label="Principale"&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article itemscope itemtype="https://schema.org/Article"&gt;
+    &lt;header&gt;
+      &lt;h1 itemprop="headline"&gt;Titolo&lt;/h1&gt;
+      &lt;p&gt;
+        &lt;time itemprop="datePublished" datetime="2025-07-20"&gt;20 lug 2025&lt;/time&gt;
+        &lt;span aria-hidden="true"&gt;•&lt;/span&gt;
+        &lt;span itemprop="author"&gt;Autore&lt;/span&gt;
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Introduzione&lt;/h2&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Sviluppo&lt;/h2&gt;
+      &lt;h3&gt;Sottosezione&lt;/h3&gt;
+      &lt;p&gt;...&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;footer&gt;Tag: &lt;a href="#"&gt;HTML&lt;/a&gt;&lt;/footer&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+
+				<h3 class="h4">Scheda prodotto e‑commerce</h3>
+				<pre><code>&lt;main&gt;
+  &lt;article itemscope itemtype="https://schema.org/Product"&gt;
+    &lt;header&gt;
+      &lt;h1 itemprop="name"&gt;Nome prodotto&lt;/h1&gt;
+      &lt;p&gt;&lt;span itemprop="brand"&gt;Marca&lt;/span&gt;&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Immagini&lt;/h2&gt;
+      &lt;figure&gt;
+        &lt;img src="img.jpg" alt="Foto del prodotto" itemprop="image" /&gt;
+        &lt;figcaption&gt;Vista frontale&lt;/figcaption&gt;
+      &lt;/figure&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Dettagli&lt;/h2&gt;
+      &lt;p itemprop="description"&gt;Descrizione breve...&lt;/p&gt;
+      &lt;p&gt;Prezzo: &lt;span itemprop="offers" itemscope itemtype="https://schema.org/Offer"&gt;
+        &lt;data itemprop="price" value="49.90"&gt;49,90 €&lt;/data&gt;
+      &lt;/span&gt;&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+      &lt;h2&gt;Recensioni&lt;/h2&gt;
+      &lt;div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"&gt;
+        &lt;meta itemprop="ratingValue" content="4.6"/&gt;
+        &lt;meta itemprop="reviewCount" content="128"/&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</code></pre>
+
+				<h3 class="h4">Landing/Documentazione</h3>
+				<pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;main&gt;
+  &lt;section aria-labelledby="hero-title"&gt;
+    &lt;h1 id="hero-title"&gt;Valore della pagina&lt;/h1&gt;
+    &lt;p class="lead"&gt;Proposta unica...&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Caratteristiche&lt;/h2&gt;
+    &lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h2&gt;FAQ&lt;/h2&gt;
+    &lt;details&gt;&lt;summary&gt;Domanda&lt;/summary&gt;&lt;p&gt;Risposta&lt;/p&gt;&lt;/details&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+
+				<h2 id="seo-onpage" class="mt-5">SEO on‑page con HTML semantico</h2>
+				<ul>
+					<li><strong>Title</strong> 50–60 caratteri coerente col contenuto; l’<code>h1</code> deve allinearsi
+						al title.
+					</li>
+					<li><strong>Meta description</strong> 150–160 caratteri: invito al clic, parole chiave naturali.
+					</li>
+					<li><strong>Prime 100–150 parole</strong>: chiarisci intenti e termini principali.</li>
+					<li><strong>Heading</strong>: usa parole chiave nei <code>h2</code>/<code>h3</code> senza keyword
+						stuffing.
+					</li>
+					<li><strong>Immagini</strong>: <code>alt</code> descrittivo e, se utile, <code>&lt;figure&gt;</code>/<code>&lt;figcaption&gt;</code>.
+					</li>
+					<li><strong>Dati strutturati</strong>: mantieni coerenza tra JSON‑LD e contenuto visibile (titolo,
+						date, autore).
+					</li>
+					<li><strong>Internal linking</strong>: menu, breadcrumb e link contestuali per distribuire PageRank.
+					</li>
+					<li><strong>FAQ/HowTo</strong>: se presenti in pagina, mappa in JSON‑LD come già fatto in questo
+						articolo.
+					</li>
+					<li><strong>Performance</strong>: DOM più pulito = meno peso e migliore Core Web Vitals.</li>
+				</ul>
+
+				<h2 id="accessibilita-avanzata" class="mt-5">Accessibilità avanzata: oltre i fondamentali</h2>
+				<ul>
+					<li><strong>Skip link</strong>: un &lt;a href="#contenuto" class="visually-hidden-focusable"&gt;Salta
+						al contenuto&lt;/a&gt; per saltare la navigazione.
+					</li>
+					<li><strong>Landmark</strong>: un solo <code>main</code>; etichetta più <code>nav</code> con <code>aria-label</code>.
+					</li>
+					<li><strong>Focus</strong>: mantieni indicatori visibili, evita <code>outline: none</code> senza
+						sostituzioni.
+					</li>
+					<li><strong>Form</strong>: associa sempre <code>label</code> ai controlli; usa <code>aria-describedby</code>
+						per help/error.
+					</li>
+					<li><strong>Componenti dinamici</strong>: per aggiornamenti usa <code>aria-live="polite"</code> con
+						parsimonia.
+					</li>
+					<li><strong>Ordine dei titoli</strong>: non saltare livelli; aiuta la navigazione con screen reader.
+					</li>
+				</ul>
+
+				<h2 id="esempi-confronto" class="mt-5">Esempio pratico: da div‑itis a semantico</h2>
+				<p>Un markup non semantico è difficile da capire per utenti, crawler e assistive tech.</p>
+				<pre><code>&lt;!-- Non semantico --&gt;
+&lt;div class="header"&gt;...&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="post"&gt;
+    &lt;h1&gt;Titolo&lt;/h1&gt;
+    &lt;div class="section"&gt;
+      &lt;h2&gt;Sezione&lt;/h2&gt;
+      &lt;p&gt;Testo&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;</code></pre>
+				<pre><code>&lt;!-- Semantico --&gt;
+&lt;header&gt;...&lt;/header&gt;
+&lt;main id="contenuto"&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Titolo&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;section&gt;
+      &lt;h2&gt;Sezione&lt;/h2&gt;
+      &lt;p&gt;Testo&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+
+				<h2 id="migrazione" class="mt-5">Migrazione e refactoring semantico</h2>
+				<ol>
+					<li><strong>Inventario</strong>: individua header, nav, contenuto, sidebar, footer.</li>
+					<li><strong>Sostituzione</strong>: converti wrapper in landmark nativi dove opportuno.</li>
+					<li><strong>Heading</strong>: assicurati che ogni <code>section</code> abbia un titolo.</li>
+					<li><strong>Alt e label</strong>: aggiungi testi alternativi e associazione label/input.</li>
+					<li><strong>Test</strong>: verifica con screen reader e strumenti automatici (Axe, Lighthouse).</li>
+				</ol>
+
+				<h2 id="validazione-testing" class="mt-5">Validazione e testing</h2>
+				<ul>
+					<li><strong>W3C HTML Validator</strong> per errori di marcatura.</li>
+					<li><strong>Lighthouse</strong> per SEO e Accessibilità di base.</li>
+					<li><strong>Axe DevTools</strong> per controlli WCAG.</li>
+					<li><strong>Rich Results Test</strong> per dati strutturati (BlogPosting/FAQ/HowTo).</li>
+				</ul>
+
+				<h2 id="risorse" class="mt-5">Risorse utili</h2>
+				<ul>
+					<li>MDN Web Docs – HTML elements</li>
+					<li>WAI-ARIA Authoring Practices</li>
+					<li>Google Search Central – Structured data &amp; SEO basics</li>
+				</ul>
+
 				<!-- HOWTO in pagina (coerente con JSON-LD) -->
 				<h2 id="howto" class="mt-5">Passi pratici: come progettare una pagina semantica</h2>
 
@@ -422,6 +775,7 @@
 				<hr class="my-4"/>
 				<p class="mb-0">
 					Ti è stata utile questa guida? Leggi anche:
+					<a href="accessibilita-web.html">Accessibilità Web</a>,
 					<a href="flexbox-vs-grid.html">Flexbox vs CSS Grid</a> e
 					<a href="js-performance.html">Performance JavaScript</a>.
 				</p>
@@ -438,6 +792,24 @@
 							<li><a href="#tag-principali">Tag principali</a></li>
 							<li><a href="#esempio-struttura">Esempio</a></li>
 							<li><a href="#best-practice">Best practice</a></li>
+							<li><a href="#div-vs-section">Div vs Section</a></li>
+							<li><a href="#header-footer-multipli">Header e footer</a></li>
+							<li><a href="#nav-breadcrumb">Nav e breadcrumb</a></li>
+							<li><a href="#immagini-figure">Immagini e figure</a></li>
+							<li><a href="#link-vs-button">Link vs button</a></li>
+							<li><a href="#form-tabelle">Form e tabelle</a></li>
+							<li><a href="#aria-ruoli">ARIA</a></li>
+							<li><a href="#dati-strutturati">Dati strutturati</a></li>
+							<li><a href="#errori-comuni">Errori comuni</a></li>
+							<li><a href="#checklist-seo">Checklist</a></li>
+							<li><a href="#glossario">Glossario</a></li>
+							<li><a href="#pattern-pagine">Pattern per pagine</a></li>
+							<li><a href="#seo-onpage">SEO on‑page</a></li>
+							<li><a href="#accessibilita-avanzata">Accessibilità avanzata</a></li>
+							<li><a href="#esempi-confronto">Esempio pratico</a></li>
+							<li><a href="#migrazione">Migrazione</a></li>
+							<li><a href="#validazione-testing">Validazione e testing</a></li>
+							<li><a href="#risorse">Risorse</a></li>
 							<li><a href="#howto">Passi pratici (HowTo)</a></li>
 						</ol>
 					</nav>
@@ -451,9 +823,9 @@
 							<time datetime="2025-07-20">20 lug 2025</time>
 						</li>
 						<li><strong>Aggiornato:</strong>
-							<time datetime="2025-08-12">12 ago 2025</time>
+							<time datetime="2025-08-13">13 ago 2025</time>
 						</li>
-						<li><strong>Tempo lettura:</strong> ~5 min</li>
+						<li><strong>Tempo lettura:</strong> ~14 min</li>
 					</ul>
 				</div>
 
@@ -464,6 +836,8 @@
 						<li><a href="#faq">Che cos’è l’HTML semantico?</a></li>
 						<li><a href="#faq">Perché è importante per la SEO?</a></li>
 						<li><a href="#faq">Quali tag usare?</a></li>
+						<li><a href="#faq">Devo usare ARIA se ho già i tag semantici?</a></li>
+						<li><a href="#faq">Meglio microdati o JSON-LD?</a></li>
 					</ul>
 				</div>
 			</aside>
@@ -521,6 +895,39 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q4">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a4" aria-expanded="false" aria-controls="a4">
+							Devo usare ARIA se ho già i tag semantici?
+						</button>
+					</h3>
+					<div id="a4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q4">
+						<div class="accordion-body">
+							No: i ruoli impliciti di <code>nav</code>, <code>main</code>, <code>header</code>, <code>footer</code>
+							sono sufficienti. Aggiungi ARIA solo quando non esiste un elemento nativo equivalente.
+						</div>
+					</div>
+				</div>
+
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q5">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a5" aria-expanded="false" aria-controls="a5">
+							Meglio microdati o JSON-LD?
+						</button>
+					</h3>
+					<div id="a5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion"
+						 aria-labelledby="q5">
+						<div class="accordion-body">
+							Google consiglia <strong>JSON-LD</strong>, più chiaro e manutenibile. Mantieni coerenza con
+							il
+							contenuto visibile.
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
@@ -530,16 +937,18 @@
 <!-- FOOTER -->
 <footer class="py-4 border-top">
 	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
+		<small class="text-muted">&copy;
+			<time id="year" datetime="2025">2025</time>
+			Scaledia</small>
 		<nav aria-label="Link social">
 			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
-			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">LinkedIn</a>
 		</nav>
 	</div>
 </footer>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 <script>

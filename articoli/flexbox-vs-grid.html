@@ -21,17 +21,18 @@
 	<meta property="og:type" content="article"/>
 	<meta property="og:url" content="https://scaledia.net/articoli/flexbox-vs-grid.html"/>
 	<meta property="og:image" content="https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg"/>
+	<meta property="og:image:alt" content="Confronto tra Flexbox e CSS Grid con esempi e best practice"/>
 	<meta property="og:site_name" content="Scaledia"/>
 	<meta property="og:locale" content="it_IT"/>
 	<meta property="article:section" content="CSS"/>
 	<meta property="article:published_time" content="2025-07-10T09:00:00+02:00"/>
-	<meta property="article:modified_time" content="2025-08-12T09:00:00+02:00"/>
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image"/>
 	<meta name="twitter:title" content="Flexbox vs CSS Grid: quando usare l’uno, quando l’altro – Scaledia"/>
 	<meta name="twitter:description" content="Confronto pratico tra Flexbox e CSS Grid con esempi e best practice."/>
 	<meta name="twitter:image" content="https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg"/>
+	<meta name="twitter:image:alt" content="Confronto tra Flexbox e CSS Grid con esempi e best practice"/>
 	<meta name="twitter:site" content="@TUO_HANDLE"/>
 
 	<!-- Favicon -->
@@ -40,11 +41,15 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 
+	<link rel="preconnect" href="https://cdn.jsdelivr.net">
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 		  rel="stylesheet"
 		  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 		  crossorigin="anonymous"/>
+	<noscript>
+		<link rel="stylesheet" href="/css/noscript.css">
+	</noscript>
 
 	<style>
         .object-fit-cover {
@@ -56,11 +61,11 @@
             top: 1rem
         }
 
-      		code {
-			background: #f8f9fa;
-			padding: .15rem .35rem;
-			border-radius: .25rem
-		}
+        code {
+            background: #f8f9fa;
+            padding: .15rem .35rem;
+            border-radius: .25rem
+        }
 
         pre code {
             display: block;
@@ -73,6 +78,14 @@
 
         .lead-badge {
             font-size: .85rem
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: .001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .001ms !important;
+            }
         }
 	</style>
 
@@ -111,7 +124,7 @@
 					"description": "Differenze e casi d’uso tra Flexbox e CSS Grid, con esempi pratici e best practice.",
 					"image": "https://scaledia.net/assets/img/og/og-flexbox-grid-1200x630.jpg",
 					"datePublished": "2025-07-10T09:00:00+02:00",
-					"dateModified": "2025-08-12T09:00:00+02:00",
+					"dateModified": "2025-08-13T13:37:28+02:00",
 					"author": {
 						"@type": "Person",
 						"name": "Scaledia"
@@ -176,7 +189,7 @@
 					"@id": "https://scaledia.net/articoli/flexbox-vs-grid.html#howto",
 					"name": "Come scegliere tra Flexbox e CSS Grid",
 					"description": "Passi per decidere quale sistema di layout usare in base al progetto.",
-					"totalTime": "PT8M",
+					"totalTime": "PT12M",
 					"estimatedCost": {
 						"@type": "MonetaryAmount",
 						"currency": "EUR",
@@ -234,13 +247,14 @@
 		}
 	</script>
 </head>
-<body>
 
+<body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
 	<div class="container">
 		<a class="navbar-brand fw-semibold" href="../index.html">Scaledia.net</a>
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav"
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" href="#primaryNav"
+				data-bs-target="#primaryNav"
 				aria-controls="primaryNav" aria-expanded="false" aria-label="Apri/chiudi navigazione">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -270,58 +284,258 @@
 		<p class="text-muted mb-0">Pubblicato il
 			<time datetime="2025-07-10">10 luglio 2025</time>
 			• Aggiornato il
-			<time datetime="2025-08-12">12 agosto 2025</time>
-			• ~7 min lettura
+			<time datetime="2025-08-13">13 agosto 2025</time>
+			• ~12 min lettura
 		</p>
 	</nav>
 </header>
 
 <!-- Main -->
-<main class="py-5">
+<main id="contenuto" class="py-5">
 	<div class="container">
 		<div class="row g-5">
 			<!-- Contenuto -->
 			<article class="col-lg-8 lh-lg fs-5">
 				<p class="lead"><strong>Flexbox</strong> e <strong>CSS Grid</strong> sono due sistemi di layout
 					fondamentali in CSS: il primo eccelle su un’unica dimensione, il secondo gestisce griglie
-					bidimensionali complesse.</p>
+					bidimensionali complesse. In questa guida pratica li mettiamo a confronto con esempi reali,
+					pattern ricorrenti, pro e contro, indicazioni SEO/UX e consigli di compatibilità.</p>
 
 				<h2 id="differenze">Differenze principali</h2>
+				<p>La differenza cardine è la <strong>dimensione del problema</strong> che ciascun sistema risolve:</p>
 				<ul>
-					<li>Flexbox → monodimensionale (riga o colonna).</li>
-					<li>CSS Grid → bidimensionale (righe e colonne).</li>
+					<li><strong>Flexbox</strong> → sistema <em>monodimensionale</em> (riga <em>oppure</em> colonna).
+					</li>
+					<li><strong>CSS Grid</strong> → sistema <em>bidimensionale</em> (righe <em>e</em> colonne insieme).
+					</li>
 				</ul>
+				<h3 id="tabella" class="h5 mt-4">Tabella comparativa</h3>
+				<div class="table-responsive">
+					<table class="table table-sm align-middle">
+						<thead>
+						<tr>
+							<th>Aspetto</th>
+							<th>Flexbox</th>
+							<th>CSS Grid</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Dimensione</td>
+							<td>Monodimensionale (riga/colonna)</td>
+							<td>Bidimensionale (righe+colonne)</td>
+						</tr>
+						<tr>
+							<td>Casi d’uso</td>
+							<td>Navbar, liste, allineamenti locali</td>
+							<td>Layout di pagina, dashboard, griglie complesse</td>
+						</tr>
+						<tr>
+							<td>API</td>
+							<td>justify-content, align-items, flex-wrap, order</td>
+							<td>grid-template-areas, repeat(), minmax(), auto-fit/fill</td>
+						</tr>
+						<tr>
+							<td>Pro</td>
+							<td>Sintassi semplice, ottimo per micro-layout</td>
+							<td>Controllo potente su due dimensioni</td>
+						</tr>
+						<tr>
+							<td>Contro</td>
+							<td>Non gestisce relazioni tra righe+colonne</td>
+							<td>Curva di apprendimento maggiore</td>
+						</tr>
+						<tr>
+							<td>Accessibilità</td>
+							<td>Usa <code>order</code> con cautela</td>
+							<td>Mantieni l’ordine DOM coerente con il focus</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<p>Flexbox è ideale per <em>flussi lineari</em> (allineamenti, distribuzione degli spazi, ordinamento),
+					Grid per <em>strutture di pagina</em> con aree previste e relazioni tra righe e colonne.</p>
 
 				<h2 id="quando-flexbox">Quando usare Flexbox</h2>
 				<ul>
-					<li>Allineamenti semplici su un’unica direzione.</li>
-					<li>Navbar, pulsanti e componenti lineari.</li>
+					<li>Allineamenti su un’unica direzione (orizzontale o verticale).</li>
+					<li>Navbar, gruppi di pulsanti, card in fila singola con wrap.</li>
+					<li>Componenti UI locali (badge, chip, breadcrumb, toolbar).</li>
+					<li>Quando l’ordine visivo può cambiare con <code>order</code> senza impatti semantici.</li>
 				</ul>
 
 				<h2 id="quando-grid">Quando usare CSS Grid</h2>
 				<ul>
-					<li>Layout complessi con righe e colonne.</li>
-					<li>Combinazioni flessibili di larghezze e altezze.</li>
+					<li>Layout di pagina complessi con aree, sidebar, header, footer.</li>
+					<li>Dashboard e griglie di contenuti con allineamenti su due dimensioni.</li>
+					<li>Template ripetibili con <code>repeat()</code>, <code>minmax()</code>,
+						<code>auto-fit</code>/<code>auto-fill</code>.
+					</li>
+					<li>Quando servono <em>linee</em> e <em>aree</em> nominabili per riferimenti chiari.</li>
 				</ul>
 
-				<h2 id="esempio">Esempio di codice</h2>
-				<pre><code>/* Flexbox */
-.container {
+				<h2 id="esempio">Esempi di codice essenziali</h2>
+				<pre><code>/* Flexbox: distribuzione e allineamento */
+.navbar {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: .75rem;
+}
+.navbar__menu {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 }
 
-/* Grid */
-.grid {
+/* Grid: layout di pagina responsive */
+.page {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "aside"
+    "footer";
+}
+@media (min-width: 992px) {
+  .page {
+    grid-template-columns: 1fr 320px;
+    grid-template-areas:
+      "header header"
+      "main   aside"
+      "footer footer";
+  }
+}
+.header { grid-area: header; }
+.main   { grid-area: main; }
+.aside  { grid-area: aside; }
+.footer { grid-area: footer; }
+</code></pre>
+
+				<h2 id="pro-contro">Pro e contro</h2>
+				<h3 class="h5">Flexbox</h3>
+				<ul>
+					<li><strong>Pro:</strong> sintassi semplice, ottimo per allineamenti, gap nativo, buono supporto.
+					</li>
+					<li><strong>Contro:</strong> non gestisce relazioni su due dimensioni in modo naturale.</li>
+				</ul>
+				<h3 class="h5">CSS Grid</h3>
+				<ul>
+					<li><strong>Pro:</strong> controllo bidimensionale, aree nominate, funzioni potenti
+						(<code>minmax</code>, <code>fit-content</code>).
+					</li>
+					<li><strong>Contro:</strong> curva di apprendimento più ripida, rischio di over-engineering su casi
+						semplici.
+					</li>
+				</ul>
+
+
+				<h2 id="layout-misto">Layout misto: Grid macro, Flex micro</h2>
+				<p>Una pratica comune è definire la struttura generale con <strong>Grid</strong> e rifinire i componenti
+					interni con <strong>Flex</strong>.</p>
+				<pre><code>/* Struttura macro con Grid */
+.shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+@media (min-width: 992px) {
+  .shell {
+    grid-template-columns: 260px 1fr;
+    grid-template-areas:
+      "header header"
+      "aside  main"
+      "footer footer";
+  }
+}
+/* Micro-layout con Flex per toolbar e card */
+.toolbar {
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__meta {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 }</code></pre>
 
-				<h2 id="howto">Come scegliere</h2>
-				<p>1) Analizza la struttura.<br>2) Monodimensionale → Flexbox.<br>3) Bidimensionale → Grid.</p>
+				<h2 id="pattern-comuni">Pattern comuni</h2>
+				<h3 class="h5">Pattern Flexbox</h3>
+				<pre><code>/* Media object */
+.media {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.media__img { flex: 0 0 auto; }
+.media__body { flex: 1 1 auto; }
+</code></pre>
+				<h3 class="h5">Pattern Grid</h3>
+				<pre><code>/* Card grid fluida con minmax */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+</code></pre>
+
+				<h2 id="responsive">Responsive e strategie</h2>
+				<ul>
+					<li>Usa <code>auto-fit</code> e <code>minmax()</code> in Grid per griglie fluide.</li>
+					<li>In Flexbox, combina <code>flex-wrap</code> con <code>gap</code> per liste adattive.</li>
+					<li>Preferisci unità relative (<code>fr</code>, <code>%</code>, <code>ch</code>) e
+						<code>clamp()</code> per limiti.
+					</li>
+				</ul>
+
+				<h2 id="compatibilita">Compatibilità e fallback</h2>
+				<p>Il supporto moderno è ampio. Per browser datati, valuta <em>progressive enhancement</em>:
+					definisci prima un layout semplice (es. Flexbox o flow naturale) e poi arricchisci con Grid.</p>
+
+				<h2 id="performance">Performance e manutenzione</h2>
+				<ul>
+					<li>Evita nidificazioni profonde di container Flex/Grid; meglio poche griglie ben progettate.</li>
+					<li>Nomina le aree Grid per migliorare leggibilità e manutenzione.</li>
+					<li>Raggruppa regole comuni e usa variabili CSS per spaziatura/colonne.</li>
+				</ul>
+
+				<h2 id="accessibilita">Accessibilità</h2>
+				<ul>
+					<li>Mantieni l’ordine DOM coerente con il focus; usa <code>order</code> con cautela.</li>
+					<li>Evita inversioni logiche che confondono la lettura sequenziale di screen reader.</li>
+				</ul>
+
+				<h2 id="errori-comuni">Errori comuni</h2>
+				<ul>
+					<li>Usare Flexbox per griglie complesse a due dimensioni.</li>
+					<li>Abusare di <code>position:absolute</code> quando Grid risolve meglio l’allineamento.</li>
+					<li>Dimenticare i <code>gap</code> e ricorrere a margini fragili.</li>
+				</ul>
+
+				<h2 id="howto">Come scegliere (checklist)</h2>
+				<ol>
+					<li><strong>Il layout è lineare?</strong> Probabilmente Flexbox.</li>
+					<li><strong>Servono righe e colonne dipendenti?</strong> Scegli Grid.</li>
+					<li><strong>Serve un template ripetibile e scalabile?</strong> Grid con aree e funzioni.</li>
+					<li><strong>Componente riusabile e locale?</strong> Flexbox.</li>
+				</ol>
+
+				<h2 id="conclusioni">Conclusioni</h2>
+				<p><em>Usa Flexbox per l’allineamento monodimensionale</em> e <em>Grid per il layout bidimensionale</em>.
+					Nella pratica i due sistemi convivono: Grid definisce la struttura macro, Flexbox rifinisce i
+					dettagli
+					di componenti e micro-layout.</p>
 
 				<hr class="my-4">
-				<p>Articoli correlati: <a href="html-semantico.html">HTML semantico</a></p>
+				<p>Articoli correlati: <a href="html-semantico.html">HTML semantico</a>, <a href="js-performance.html">Performance
+					JavaScript</a>, <a href="accessibilita-web.html">Accessibilità Web</a></p>
 			</article>
 
 			<!-- Sidebar -->
@@ -330,24 +544,34 @@
 					<h2 class="h6">Sommario</h2>
 					<ol class="small m-0">
 						<li><a href="#differenze">Differenze</a></li>
+						<li><a href="#tabella">Tabella comparativa</a></li>
 						<li><a href="#quando-flexbox">Quando Flexbox</a></li>
 						<li><a href="#quando-grid">Quando Grid</a></li>
-						<li><a href="#esempio">Esempio</a></li>
+						<li><a href="#esempio">Esempi di codice</a></li>
+						<li><a href="#pro-contro">Pro e contro</a></li>
+						<li><a href="#layout-misto">Layout misto</a></li>
+						<li><a href="#pattern-comuni">Pattern comuni</a></li>
+						<li><a href="#responsive">Responsive</a></li>
+						<li><a href="#compatibilita">Compatibilità</a></li>
+						<li><a href="#performance">Performance</a></li>
+						<li><a href="#accessibilita">Accessibilità</a></li>
+						<li><a href="#errori-comuni">Errori comuni</a></li>
 						<li><a href="#howto">Come scegliere</a></li>
+						<li><a href="#conclusioni">Conclusioni</a></li>
 					</ol>
 				</div>
 
 				<div class="border rounded p-3">
 					<h2 class="h6 mb-2">Metadati</h2>
 					<ul class="m-0 small list-unstyled">
-						<li><strong>Categoria:</strong> <a href="../articoli.html?categoria=html">CSS</a></li>
+						<li><strong>Categoria:</strong> <a href="../articoli.html?categoria=css">CSS</a></li>
 						<li><strong>Pubblicato:</strong>
-							<time datetime="2025-07-20">20 lug 2025</time>
+							<time datetime="2025-07-10">10 lug 2025</time>
 						</li>
 						<li><strong>Aggiornato:</strong>
-							<time datetime="2025-08-12">12 ago 2025</time>
+							<time datetime="2025-08-13">13 ago 2025</time>
 						</li>
-						<li><strong>Tempo lettura:</strong> ~2 min</li>
+						<li><strong>Tempo lettura:</strong> ~12 min</li>
 					</ul>
 				</div>
 
@@ -356,6 +580,8 @@
 					<h2 class="h6 mb-2">FAQ rapide</h2>
 					<ul class="small m-0">
 						<li><a href="#faq">Differenza principale?</a></li>
+						<li><a href="#faq">Quando usare Flexbox?</a></li>
+						<li><a href="#faq">Quando usare CSS Grid?</a></li>
 					</ul>
 				</div>
 			</aside>
@@ -375,6 +601,32 @@
 						<div class="accordion-body">Flexbox è per una dimensione, Grid per due.</div>
 					</div>
 				</div>
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q2">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a2"
+								aria-expanded="false">Quando usare Flexbox?
+						</button>
+					</h3>
+					<div id="a2" class="accordion-collapse collapse">
+						<div class="accordion-body">Quando devi allineare elementi lungo un’unica direzione o creare
+							layout adattabili su una dimensione.
+						</div>
+					</div>
+				</div>
+				<div class="accordion-item">
+					<h3 class="accordion-header" id="q3">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#a3"
+								aria-expanded="false">Quando usare CSS Grid?
+						</button>
+					</h3>
+					<div id="a3" class="accordion-collapse collapse">
+						<div class="accordion-body">Quando devi creare layout complessi con righe e colonne,
+							controllando entrambe le dimensioni.
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 	</div>
@@ -383,16 +635,18 @@
 <!-- Footer -->
 <footer class="py-4 border-top">
 	<div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-		<small class="text-muted">&copy; <span id="year"></span> Scaledia</small>
+		<small class="text-muted">&copy;
+			<time id="year" datetime="2025">2025</time>
+			Scaledia</small>
 		<nav aria-label="Link social">
 			<a class="text-muted me-3" href="https://github.com/CrescenzoSorrentino">GitHub</a>
-			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">Linkedin</a>
+			<a class="text-muted" href="https://www.linkedin.com/in/crescenzo-sorrentino-989808354">LinkedIn</a>
 		</nav>
 	</div>
 </footer>
 
 <!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
 <script>
