@@ -1,0 +1,6 @@
+# robots.txt for https://scaledia.net/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://scaledia.net/sitemap.xml
