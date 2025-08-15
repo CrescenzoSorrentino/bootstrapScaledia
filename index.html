@@ -173,7 +173,7 @@
 		</button>
 		<div class="collapse navbar-collapse" id="primaryNav">
 			<ul class="navbar-nav ms-auto">
-				<li class="nav-item"><a class="nav-link active" href="#" aria-current="page">Home</a></li>
+				<li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="articoli.html">Articoli</a></li>
 				<li class="nav-item"><a class="nav-link" href="servizi.html">Servizi</a></li>
 				<li class="nav-item"><a class="nav-link" href="chi-siamo.html">Chi siamo</a></li>
@@ -282,28 +282,28 @@
 		<section aria-labelledby="latest-title" class="mb-5">
 			<div class="d-flex align-items-center justify-content-between mb-3">
 				<h2 id="latest-title" class="h2 mb-0">Dal blog: ultimi articoli</h2>
-				<a class="btn btn-sm btn-outline-secondary" href="articoli.html">Vedi tutti</a>
+				<a class="btn btn-sm btn-outline-secondary" href="articoli.html" aria-label="Vedi tutti gli articoli del blog">Vedi tutti</a>
 			</div>
 
 			<div class="row g-4">
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/html-semantico.html" class="ratio ratio-16x9">
-							<img class="object-fit-cover rounded-top"
-								 width="640" height="360" src="assets/img/cover/html-semantico-640.jpg"
-								 srcset="assets/img/cover/html-semantico-640.jpg 640w, assets/img/cover/html-semantico-1280.jpg 1280w"
-								 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
-								 alt="HTML semantico: struttura corretta di una pagina"
-								 loading="lazy" decoding="async">
-						</a>
+ 					<a href="/articoli/html-semantico.html" class="ratio ratio-16x9" aria-labelledby="post-html-semantico">
+ 						<img class="object-fit-cover rounded-top"
+ 							 width="640" height="360" src="assets/img/cover/html-semantico-640.jpg"
+ 							 srcset="assets/img/cover/html-semantico-640.jpg 640w, assets/img/cover/html-semantico-1280.jpg 1280w"
+ 							 sizes="(min-width:992px) 33vw, (min-width:768px) 50vw, 100vw"
+ 							 alt="HTML semantico: struttura corretta di una pagina"
+ 							 loading="lazy" decoding="async">
+ 					</a>
 						<div class="card-body d-flex flex-column">
 							<div class="mb-2">
 								<a href="articoli.html?categoria=html"
 								   class="badge rounded-pill text-bg-light text-secondary">HTML</a>
 							</div>
 							<h3 class="h5">
-								<a class="stretched-link text-decoration-none link-dark"
+								<a id="post-html-semantico" class="stretched-link text-decoration-none link-dark" rel="bookmark"
 								   href="/articoli/html-semantico.html">
 									HTML semantico: guida pratica a header, main, article e aside
 								</a>
@@ -321,7 +321,7 @@
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/flexbox-vs-grid.html" class="ratio ratio-16x9">
+						<a href="/articoli/flexbox-vs-grid.html" class="ratio ratio-16x9" aria-labelledby="post-flex-grid">
 							<img class="object-fit-cover rounded-top"
 								 width="640" height="360" src="assets/img/cover/flex-grid-640.jpg"
 								 srcset="assets/img/cover/flex-grid-640.jpg 640w, assets/img/cover/flex-grid-1280.jpg 1280w"
@@ -335,7 +335,7 @@
 								   class="badge rounded-pill text-bg-light text-secondary">CSS</a>
 							</div>
 							<h3 class="h5">
-								<a class="stretched-link text-decoration-none link-dark"
+								<a id="post-flex-grid" class="stretched-link text-decoration-none link-dark" rel="bookmark"
 								   href="/articoli/flexbox-vs-grid.html">
 									Flexbox vs CSS Grid: quando usare l’uno, quando l’altro
 								</a>
@@ -353,7 +353,7 @@
 				<!-- Card articolo -->
 				<article class="col-md-6 col-lg-4">
 					<div class="card h-100 shadow-sm">
-						<a href="/articoli/accessibilita-web.html" class="ratio ratio-16x9">
+						<a href="/articoli/accessibilita-web.html" class="ratio ratio-16x9" aria-labelledby="post-accessibilita">
 							<img class="object-fit-cover rounded-top"
 								 width="640" height="360" src="assets/img/cover/accessibilita-640.jpg"
 								 srcset="assets/img/cover/accessibilita-640.jpg 640w, assets/img/cover/accessibilita-1280.jpg 1280w"
@@ -367,7 +367,7 @@
 								   class="badge rounded-pill text-bg-light text-secondary">Accessibilità</a>
 							</div>
 							<h3 class="h5">
-								<a class="stretched-link text-decoration-none link-dark"
+								<a id="post-accessibilita" class="stretched-link text-decoration-none link-dark" rel="bookmark"
 								   href="/articoli/accessibilita-web.html">
 									Accessibilità web: la guida completa
 								</a>

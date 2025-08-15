@@ -111,12 +111,12 @@
 			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 			<li class="breadcrumb-item active" aria-current="page">Contatti</li>
 		</ol>
-		<h1 class="h2 mb-1">Contatti</h1>
+		<h1 id="page-title" class="h2 mb-1">Contatti</h1>
 		<p class="text-muted mb-0">Scrivici per feedback, suggerimenti o proposte di collaborazione.</p>
 	</nav>
 </header>
 
-<main id="contenuto" class="py-5">
+<main id="contenuto" class="py-5" aria-labelledby="page-title">
 	<div class="container">
 		<div class="row g-5">
 			<div class="col-lg-6">
@@ -127,23 +127,33 @@
 					</p>
 					<div class="card shadow-sm">
 						<div class="card-body">
-							<h3 class="h5">Modulo di contatto</h3>
-							<p id="formHelp" class="text-muted small">L’invio apre il tuo client email con i dati precompilati.</p>
-							<form action="mailto:info@scaledia.net" method="post" enctype="text/plain" aria-describedby="formHelp">
+ 						<h3 id="form-title" class="h5">Modulo di contatto</h3>
+							<p id="formHelp" class="text-muted small">L’invio apre il tuo client email con i dati precompilati. Hai dubbi sui pacchetti? Consulta <a href="servizi.html#prezzi" class="link-secondary">Servizi</a>.</p>
+							<form action="mailto:info@scaledia.net?subject=Richiesta%20preventivo%20-%20Scaledia" method="post" enctype="text/plain" aria-labelledby="form-title" aria-describedby="formHelp">
 								<div class="mb-3">
 									<label for="nome" class="form-label">Nome</label>
-									<input type="text" class="form-control" id="nome" name="Nome" required>
+									<input type="text" class="form-control" id="nome" name="Nome" autocomplete="name" required>
 								</div>
-								<div class="mb-3">
-									<label for="email" class="form-label">Email</label>
-									<input type="email" class="form-control" id="email" name="Email" required>
-								</div>
-								<div class="mb-3">
-									<label for="messaggio" class="form-label">Messaggio</label>
+ 							<div class="mb-3">
+ 								<label for="email" class="form-label">Email</label>
+									<input type="email" class="form-control" id="email" name="Email" autocomplete="email" inputmode="email" required>
+ 							</div>
+ 							<div class="mb-3">
+ 								<label for="pacchetto" class="form-label">Servizio/Pacchetto</label>
+ 								<select class="form-select" id="pacchetto" name="Pacchetto" aria-describedby="pacchettoHelp" required>
+ 									<option value="" selected disabled>Seleziona un’opzione</option>
+ 									<option>Starter</option>
+ 									<option>Business</option>
+ 									<option>Pro</option>
+ 								</select>
+ 								<div id="pacchettoHelp" class="form-text">Vedi i dettagli dei pacchetti in <a href="servizi.html#prezzi">Servizi</a>.</div>
+ 							</div>
+ 							<div class="mb-3">
+ 								<label for="messaggio" class="form-label">Messaggio</label>
 									<textarea class="form-control" id="messaggio" name="Messaggio" rows="5" required></textarea>
 								</div>
 								<div class="form-check mb-3">
-									<input class="form-check-input" type="checkbox" value="ok" id="privacy" required>
+									<input class="form-check-input" type="checkbox" value="ok" id="privacy" name="Privacy" required>
 									<label class="form-check-label" for="privacy">
 										Ho letto l’informativa sulla privacy e acconsento al trattamento dei dati.
 									</label>
