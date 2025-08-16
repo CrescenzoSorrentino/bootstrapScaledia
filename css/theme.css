@@ -91,6 +91,38 @@ a:hover { text-decoration-color: rgba(88, 101, 242, .9); }
 .badge { font-weight: 600; letter-spacing: .02em; }
 .badge.text-bg-light { background-color: #eef2ff !important; color: #3730a3 !important; }
 
+/* Pagination */
+.pagination { gap: .5rem; }
+.page-link {
+  border-radius: var(--bs-border-radius);
+  color: var(--bs-primary);
+  border-color: rgba(15,23,42,.12);
+  box-shadow: 0 .25rem .6rem rgba(16,24,40,.04);
+  min-width: 2.5rem;
+  text-align: center;
+}
+.page-link:hover {
+  color: #3f4de0;
+  background-color: rgba(88,101,242,.08);
+  border-color: #4a59e6;
+}
+.page-link:focus {
+  box-shadow: 0 0 0 .25rem rgba(88,101,242,.25);
+  border-color: #4a59e6;
+}
+.page-item.active .page-link {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+  box-shadow: 0 .5rem 1rem rgba(88,101,242,.25);
+}
+.page-item.disabled .page-link {
+  color: #9ca3af;
+  background-color: #f3f4f6;
+  border-color: rgba(15,23,42,.12);
+  box-shadow: none;
+}
+
 /* Form */
 .form-control:focus {
   border-color: #4a59e6;
